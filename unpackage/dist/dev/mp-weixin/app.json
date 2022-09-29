@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/news/news",
+    "pages/more/more",
+    "pages/userInfo/userInfo"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "NiceApp",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index",
+        "iconPath": "static/icon/home.png",
+        "selectedIconPath": "static/icon/home-active.png"
+      },
+      {
+        "text": "更多",
+        "pagePath": "pages/more/more",
+        "iconPath": "static/icon/cart.png",
+        "selectedIconPath": "static/icon/cart-active.png"
+      },
+      {
+        "text": "咨询",
+        "pagePath": "pages/news/news",
+        "iconPath": "static/icon/news.png",
+        "selectedIconPath": "static/icon/news-active.png"
+      },
+      {
+        "text": "个人中心",
+        "pagePath": "pages/userInfo/userInfo",
+        "iconPath": "static/icon/member.png",
+        "selectedIconPath": "static/icon/member-active.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
