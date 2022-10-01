@@ -3,16 +3,20 @@
     "pages/index/index",
     "pages/news/news",
     "pages/more/more",
-    "pages/userInfo/userInfo"
+    "pages/userInfo/userInfo",
+    "pages/plan/plan"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "NiceApp",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarBackgroundColor": "white",
+    "backgroundColor": "white"
   },
   "tabBar": {
+    "selectedColor": "#b8ecf9",
+    "color": "#999",
+    "borderStyle": "black",
     "list": [
       {
         "text": "首页",
@@ -27,7 +31,13 @@
         "selectedIconPath": "static/icon/cart-active.png"
       },
       {
-        "text": "咨询",
+        "text": "计划",
+        "pagePath": "pages/plan/plan",
+        "iconPath": "static/icon/news.png",
+        "selectedIconPath": "static/icon/news-active.png"
+      },
+      {
+        "text": "咨讯",
         "pagePath": "pages/news/news",
         "iconPath": "static/icon/news.png",
         "selectedIconPath": "static/icon/news-active.png"
