@@ -1,6 +1,20 @@
 <template>
-	<view>
-		
+	<view class="more">
+		<view class="more-item">
+			<view>计算器</view>
+			<view>体重换算</view>
+			<view>猜成语</view>
+		</view>
+		<view class="more-item">
+			<view>猜成语</view>
+			<view>体重换算</view>
+			<view>猜一猜</view>
+		</view>
+		<view class="more-item">
+			<view>计算器</view>
+			<view>体重换算</view>
+			<view>猜成语</view>
+		</view>
 	</view>
 </template>
 
@@ -8,11 +22,11 @@
 	export default {
 		data() {
 			return {
-				
+
 			}
 		},
 		methods: {
-			
+
 		}
 	}
 </script>
