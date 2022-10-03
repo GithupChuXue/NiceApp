@@ -17,17 +17,17 @@ exports.userReg = function (req, res) {
     // 查询用户名是否被占用
     const sqlStr = 'select * from userinfo where username=?'
     db.query(sqlStr, userinfo.username, function(err, results) {
-        if (err) return res.cc(err, 11)
-        if (results.length > 0) return res.cc(err, 11)
+        if (err) return res.cc(err, 400)
+        if (results.length > 0) return res.cc(err, 404)
     })
     // 对密码进行加密
     userinfo.password = bcrypt.hashSync(userinfo.password, 10)
     // 插入用户信息
     const sqlStr1 = 'insert into userinfo set ?'
     db.query(sqlStr1, {username: userinfo.username, password: userinfo.password}, (err, results) => {
-        if (err) return res.cc(err, 11)
-        if (results.affectedRows !== 1) return res.cc('注册用户失败，请稍后再试！', 11)
-        res.send({ status: 10, message: '注册成功！' })
+        if (err) return res.cc(err, 400)
+        if (results.affectedRows !== 1) return res.cc('注册用户失败，请稍后再试！', 404)
+        res.send({ status: 200, message: '注册成功！' })
     })
 }
 
@@ -37,16 +37,16 @@ exports.userLogin = function (req, res) {
     const userinfo = req.body
     const sql = 'select * from userinfo where username=?'
     db.query(sql, userinfo.username, (err, results) => {
-        if (err) return res.cc(err, 21)
-        if (results.length !== 1) return res.cc('登录失败', 21)
+        if (err) return res.cc(err, 400)
+        if (results.length !== 1) return res.cc('登录失败', 404)
         const compareResult = bcrypt.compareSync(userinfo.password, results[0].password)
-        if (!compareResult) return res.cc('密码错误', 21)
+        if (!compareResult) return res.cc('密码错误', 400)
 
         // 在服务器端生成token
         const user = { ...results[0], password: '', user_pic: '' }
         const tokenStr = jwt.sign(user, config.jwtSecretKey, { expiresIn: config.expiresIn })
         res.send({
-            status: 20,
+            status: 200,
             message: '登录成功',
             token: 'bearer ' + tokenStr,
         })

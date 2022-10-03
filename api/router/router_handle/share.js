@@ -17,9 +17,9 @@ exports.share_upload = (req, res, next) => {
     // console.log(req.body)
     // console.log(req.file)
     db.query(sql, {owner: req.user.username, title: req.body.title, text: req.body.text, time: time, img: imgName}, (err, results) => {
-        if (err) return res.cc(err, 71)
-        if (results.affectedRows !== 1) return res.cc('发布内容失败，请稍后再试！', 71)
-        res.send({message: '发布内容成功', status: 70})
+        if (err) return res.cc(err, 400)
+        if (results.affectedRows !== 1) return res.cc('发布内容失败，请稍后再试！', 404)
+        res.send({message: '发布内容成功', status: 200})
     })
 }
 
@@ -27,9 +27,9 @@ exports.share_upload = (req, res, next) => {
 exports.get_all_share = (req, res) => {
     const sql = 'select * from shareinfo where status=0'
     db.query(sql, (err, results) => {
-        if(err) return res.cc(err, 72)
+        if(err) return res.cc(err, 400)
         res.send({
-            status: 70,
+            status: 200,
             message: '获取文章分类数据成功！',
             data: results,
           })
@@ -40,10 +40,10 @@ exports.get_all_share = (req, res) => {
 exports.get_id_share = (req, res) => {
     const sql = 'select * from shareinfo where id=?'
     db.query(sql, req.params.id, (err, results) => {
-        if(err) return res.cc(err, 73)
-        if(results.length !== 1) return res.cc(err, 73)
+        if(err) return res.cc(err, 400)
+        if(results.length !== 1) return res.cc(err, 404)
         res.send({
-            status: 70,
+            status: 200,
             message: `获取id:${req.params.id}的内容成功`,
             data: results[0]
         })
