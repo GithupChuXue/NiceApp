@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 // /my/userinfo
 exports.getUserinfo = (req, res) => {
     // 定义查询用户信息的sql语句
-    const sql = 'select id, username, nickname, email, share, collection from userinfo where id=?'
+    const sql = 'select id, username, nickname, email from userinfo where id=?'
 
     db.query(sql, req.user.id, (err, results) => {
         if (err) return res.cc(err, 400)
@@ -14,6 +14,42 @@ exports.getUserinfo = (req, res) => {
             status: 200, 
             message: '获取用户信息成功',
             data: results[0]
+        })
+    })
+}
+// /my/myshare
+exports.getUserShare = (req, res) => {
+    // 定义查询用户信息的sql语句
+    const sql = 'select * from shareinfo where owner=?'
+
+    db.query(sql, req.user.username, (err, results) => {
+        if (err) return res.cc(err, 400)
+        // if (results.length !== 1) return res.cc('获取用户信息失败', 404)
+        res.send({
+            status: 200, 
+            message: '我的分享信息获取成功',
+            data: results
+        })
+    })
+}
+
+// /my/mycollection
+exports.getUserCollection = (req, res) => {
+    // 定义查询用户信息的sql语句
+    const sql = 'select collection from userinfo where id=?'
+    db.query(sql, req.user.id, (err, results) => {
+        if (err) return res.cc(err, 400)
+        if (results.length !== 1) return res.cc('获取用户信息失败', 404)
+        const collectStr = results[0].collection
+        let dataStrArr=collectStr.split(",");  //分割成字符串数组
+        const sql = 'select * from shareinfo where id in (' + dataStrArr +')'
+        db.query(sql, (err, results) => {
+            if (err) return res.cc(err, 400)
+            res.send({
+                status: 200, 
+                message: '获取收藏信息成功',
+                data: results
+            })
         })
     })
 }
@@ -58,3 +94,5 @@ exports.update_avatar = (req, res) => {
         res.cc('更换头像成功', 200)
     })
 }
+
+
