@@ -14,7 +14,7 @@ const expressJoi = require('@escook/express-joi')
 const storage = multer.diskStorage({
     // 保存路径
     destination: function (req, file, callback) { 
-        callback(null, './api/images')
+        callback(null, './api/image')
     }, 
     // 保存文件名
     filename: function (req, file, callback) {
