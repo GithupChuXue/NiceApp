@@ -31,7 +31,7 @@ app.use(function(req, res, next){
 app.use(expressJwt({ secret: config.jwtSecretKey }).unless({path: [/^\/user/]}))
 
 
-// 路由/api
+// 路由/user
 // 注册登录
 const userRouter = require('./router/user')
 app.use('/user', userRouter)

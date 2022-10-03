@@ -16,10 +16,12 @@ exports.userReg = function (req, res) {
     if (!userinfo.username || !userinfo.password) return res.cc('用户名或密码不合法！')
     // 查询用户名是否被占用
     const sqlStr = 'select * from userinfo where username=?'
+    console.log(userinfo)
     db.query(sqlStr, userinfo.username, function(err, results) {
         if (err) return res.cc(err, 400)
         if (results.length > 0) return res.cc(err, 404)
     })
+    console.log(userinfo)
     // 对密码进行加密
     userinfo.password = bcrypt.hashSync(userinfo.password, 10)
     // 插入用户信息

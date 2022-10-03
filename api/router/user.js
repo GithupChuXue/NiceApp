@@ -9,9 +9,9 @@ const expresssJoi = require('@escook/express-joi')
 const { reg_login_schema } = require('./schema/user')
 
 // 注册新用户
-// /api/reguser
+// /user/register
 router.post('/register', expresssJoi(reg_login_schema), userRouterHandle.userReg)
-
+// router.post('/register/', userRouterHandle.userReg)
 // 用户登录
 router.post('/login', expresssJoi(reg_login_schema), userRouterHandle.userLogin)
 
