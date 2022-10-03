@@ -39,7 +39,7 @@ app.use('/user', userRouter)
 // /my
 // 获取用户信息
 const userinfoRouter = require('./router/userinfo')
-app.use('/userinfo', userinfoRouter)
+app.use('/my', userinfoRouter)
 
 // // /upload
 // const upload = require('./router/pic')
