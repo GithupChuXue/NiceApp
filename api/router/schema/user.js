@@ -20,7 +20,6 @@ exports.reg_login_schema = {
 // 更新信息
 exports.upadate_userinfo_schema = {
     body:{
-        id,
         nickname,
         email,
     },

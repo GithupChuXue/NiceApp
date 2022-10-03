@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 // /my/userinfo
 exports.getUserinfo = (req, res) => {
     // 定义查询用户信息的sql语句
-    const sql = 'select id, username, nickname, email, user_pic from userinfo where id=?'
+    const sql = 'select id, username, nickname, email, share, collection from userinfo where id=?'
 
     db.query(sql, req.user.id, (err, results) => {
         if (err) return res.cc(err, 400)
@@ -21,7 +21,7 @@ exports.getUserinfo = (req, res) => {
 exports.updateUserinfo = function(req, res) {
     const userinfo_update = req.body
     sql = 'update userinfo set ? where id=?'
-    db.query(sql, [req.body, req.body.id], (err, results) => {
+    db.query(sql, [req.body, req.user.id], (err, results) => {
         if (err) return res.cc(err, 400)
         if (results.affectedRows !== 1) return res.cc('更新用户的基本信息失败！', 404)
         res.cc('更新用户信息成功', 200)

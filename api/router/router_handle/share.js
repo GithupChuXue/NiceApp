@@ -30,16 +30,17 @@ exports.get_all_share = (req, res) => {
         if(err) return res.cc(err, 400)
         res.send({
             status: 200,
-            message: '获取文章分类数据成功！',
+            message: '读取所有内容！',
             data: results,
-          })
+        })
     })
 }
 
 // 根据id读取内容
 exports.get_id_share = (req, res) => {
     const sql = 'select * from shareinfo where id=?'
-    db.query(sql, req.params.id, (err, results) => {
+    console.log(req.params)
+    db.query(sql, Number(req.params.id), (err, results) => {
         if(err) return res.cc(err, 400)
         if(results.length !== 1) return res.cc(err, 404)
         res.send({

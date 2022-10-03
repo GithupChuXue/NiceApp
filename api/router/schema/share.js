@@ -1,8 +1,8 @@
 const joi = require('joi')
 const string = joi.string().required()
 // id 的校验规则
-const id = joi.number().integer().min(1).required()
-
+// const id = joi.number().integer().min(1).required()
+const id = joi.string().required()
 exports.share_upload_schema = {
     body: {
         title: string,
