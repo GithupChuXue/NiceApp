@@ -57,7 +57,7 @@ app.use((err, req, res, next) => {
     if (err instanceof Joi.ValidationError) return res.cc(err)
     if (err.name === 'UnauthorizedError') return res.cc(err)
     // 其他错误
-    res.cc(err)
+    res.send('未知错误')
 })
 
 

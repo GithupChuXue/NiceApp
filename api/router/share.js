@@ -8,15 +8,13 @@ const expresssJoi = require('@escook/express-joi')
 // 表单验证规则对象
 const { share_upload_schema, get_id_share_schema } = require('./schema/share')
 
-
-const imgPath = 'C:\Users\肖正康\Desktop\aliproject\NiceApp\api\image'
 // multer
 const multer=require('multer')
 const expressJoi = require('@escook/express-joi')
 const storage = multer.diskStorage({
     // 保存路径
     destination: function (req, file, callback) { 
-        callback(null, './image')
+        callback(null, './images')
     }, 
     // 保存文件名
     filename: function (req, file, callback) {

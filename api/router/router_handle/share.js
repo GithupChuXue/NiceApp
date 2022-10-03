@@ -13,9 +13,11 @@ const sd = require('silly-datetime')
 exports.share_upload = (req, res, next) => {
     const sql = 'insert into shareinfo set ?'
     const time = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss')
+    console.log(req.body)
+    console.log(req.file)
+    
     imgName = req.file.filename
-    // console.log(req.body)
-    // console.log(req.file)
+    
     db.query(sql, {owner: req.user.username, title: req.body.title, text: req.body.text, time: time, img: imgName}, (err, results) => {
         if (err) return res.cc(err, 400)
         if (results.affectedRows !== 1) return res.cc('发布内容失败，请稍后再试！', 404)
