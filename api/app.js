@@ -46,9 +46,12 @@ app.use('/my', userinfoRouter)
 // app.use('/upload', upload) 
 
 // /share
-// 上传内容
 const share = require('./router/share')
 app.use('/share', share)
+
+// /home
+const home = require('./router/home')
+app.use('/home', home)
 
 
 // 定义错误级别的中间件
