@@ -11,7 +11,7 @@ exports.share_upload_schema = {
 }
 
 // 验证规则对象 - 根据 Id 读取内容
-exports.get_id_share_schema = {
+exports.id_share_schema = {
     params: {
       id,
     },
