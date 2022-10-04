@@ -766,8 +766,8 @@ function populateParameters(result) {var _result$brand =
     appVersion: "1.0.0",
     appVersionCode: "100",
     appLanguage: getAppLanguage(hostLanguage),
-    uniCompileVersion: "3.6.4",
-    uniRuntimeVersion: "3.6.4",
+    uniCompileVersion: "3.6.3",
+    uniRuntimeVersion: "3.6.3",
     uniPlatform: undefined || "mp-weixin",
     deviceBrand: deviceBrand,
     deviceModel: model,
@@ -2664,6 +2664,80 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ 18:
+/*!*********************************************************!*\
+  !*** F:/FrontEnd/NiceApp/NiceApp-main/services/read.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //初始触发，从头刷新数据库
+function refresh() {
+  window.idx_num = 0;
+  console.log("idx_num = 0");
+}
+
+//请求本地资源数据
+function read_local(filepath) {
+  var idx = "idx" + window.idx_num.toString();
+  idx_num = idx_num + 1;
+  console.log(idx);
+  if (window) {//网页
+    var xhr = null;
+    if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest();
+    } else {
+      // eslint-disable-next-line
+      xhr = new ActiveXObject('Microsoft.XMLHTTP');
+    };
+    //const okStatus = document.location.protocol === 'file' ? 0 : 200
+    xhr.open('GET', filepath, false); //初始化请求(HTTP请求方法，请求的URL，是否为异步方式)
+    //xhr.overrideMimeType('text/html;charset=utf-8') //覆写由服务器返回的MIME类型
+    xhr.send(null); //发送请求(传递的信息)
+    /*
+    xhr.onload = function(){
+    	if(xhr.status == 200) {
+    		 var content = JSON.parse(xhr.responseText);//将获取的信息解析为json对象
+    	}
+    }*/
+    console.log(xhr.responseText);
+    var content = JSON.parse(xhr.responseText); //将获取的信息解析为json对象
+    if (content[idx]) {
+      console.log(content[idx]);
+      return content[idx];
+    } else
+    {
+      return null;
+    };
+
+  } else
+  if (wx) {//小程序
+    wx.request({
+      url: filepath,
+      method: 'GET',
+      success: function success(res) {
+        console.log('request success', res);
+      },
+      fail: function fail() {
+        console.log('fail!');
+      },
+      complete: function complete() {
+        console.log('complete!');
+      } });
+
+    console.log(res);
+    var content = JSON.parse(res); //将获取的信息解析为json对象
+    return content.content;
+  };
+};var _default =
+
+{
+  refresh: refresh,
+  read_local: read_local };exports.default = _default;
 
 /***/ }),
 
@@ -9216,221 +9290,10 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 43:
-/*!**********************************************************************************************************************************!*\
-  !*** /Users/a13571442004/Documents/HBuilderProjects/niceApp/uni_modules/uni-dateformat/components/uni-dateformat/date-format.js ***!
-  \**********************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.formatDate = formatDate;exports.friendlyDate = friendlyDate; // yyyy-MM-dd hh:mm:ss.SSS 所有支持的类型
-function pad(str) {var length = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
-  str += '';
-  while (str.length < length) {
-    str = '0' + str;
-  }
-  return str.slice(-length);
-}
-
-var parser = {
-  yyyy: function yyyy(dateObj) {
-    return pad(dateObj.year, 4);
-  },
-  yy: function yy(dateObj) {
-    return pad(dateObj.year);
-  },
-  MM: function MM(dateObj) {
-    return pad(dateObj.month);
-  },
-  M: function M(dateObj) {
-    return dateObj.month;
-  },
-  dd: function dd(dateObj) {
-    return pad(dateObj.day);
-  },
-  d: function d(dateObj) {
-    return dateObj.day;
-  },
-  hh: function hh(dateObj) {
-    return pad(dateObj.hour);
-  },
-  h: function h(dateObj) {
-    return dateObj.hour;
-  },
-  mm: function mm(dateObj) {
-    return pad(dateObj.minute);
-  },
-  m: function m(dateObj) {
-    return dateObj.minute;
-  },
-  ss: function ss(dateObj) {
-    return pad(dateObj.second);
-  },
-  s: function s(dateObj) {
-    return dateObj.second;
-  },
-  SSS: function SSS(dateObj) {
-    return pad(dateObj.millisecond, 3);
-  },
-  S: function S(dateObj) {
-    return dateObj.millisecond;
-  } };
-
-
-// 这都n年了iOS依然不认识2020-12-12，需要转换为2020/12/12
-function getDate(time) {
-  if (time instanceof Date) {
-    return time;
-  }
-  switch (typeof time) {
-    case 'string':
-      {
-        // 2020-12-12T12:12:12.000Z、2020-12-12T12:12:12.000
-        if (time.indexOf('T') > -1) {
-          return new Date(time);
-        }
-        return new Date(time.replace(/-/g, '/'));
-      }
-    default:
-      return new Date(time);}
-
-}
-
-function formatDate(date) {var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy/MM/dd hh:mm:ss';
-  if (!date && date !== 0) {
-    return '';
-  }
-  date = getDate(date);
-  var dateObj = {
-    year: date.getFullYear(),
-    month: date.getMonth() + 1,
-    day: date.getDate(),
-    hour: date.getHours(),
-    minute: date.getMinutes(),
-    second: date.getSeconds(),
-    millisecond: date.getMilliseconds() };
-
-  var tokenRegExp = /yyyy|yy|MM|M|dd|d|hh|h|mm|m|ss|s|SSS|SS|S/;
-  var flag = true;
-  var result = format;
-  while (flag) {
-    flag = false;
-    result = result.replace(tokenRegExp, function (matched) {
-      flag = true;
-      return parser[matched](dateObj);
-    });
-  }
-  return result;
-}
-
-function friendlyDate(time, _ref)
-
-
-
-{var _ref$locale = _ref.locale,locale = _ref$locale === void 0 ? 'zh' : _ref$locale,_ref$threshold = _ref.threshold,threshold = _ref$threshold === void 0 ? [60000, 3600000] : _ref$threshold,_ref$format = _ref.format,format = _ref$format === void 0 ? 'yyyy/MM/dd hh:mm:ss' : _ref$format;
-  if (time === '-') {
-    return time;
-  }
-  if (!time && time !== 0) {
-    return '';
-  }
-  var localeText = {
-    zh: {
-      year: '年',
-      month: '月',
-      day: '天',
-      hour: '小时',
-      minute: '分钟',
-      second: '秒',
-      ago: '前',
-      later: '后',
-      justNow: '刚刚',
-      soon: '马上',
-      template: '{num}{unit}{suffix}' },
-
-    en: {
-      year: 'year',
-      month: 'month',
-      day: 'day',
-      hour: 'hour',
-      minute: 'minute',
-      second: 'second',
-      ago: 'ago',
-      later: 'later',
-      justNow: 'just now',
-      soon: 'soon',
-      template: '{num} {unit} {suffix}' } };
-
-
-  var text = localeText[locale] || localeText.zh;
-  var date = getDate(time);
-  var ms = date.getTime() - Date.now();
-  var absMs = Math.abs(ms);
-  if (absMs < threshold[0]) {
-    return ms < 0 ? text.justNow : text.soon;
-  }
-  if (absMs >= threshold[1]) {
-    return formatDate(date, format);
-  }
-  var num;
-  var unit;
-  var suffix = text.later;
-  if (ms < 0) {
-    suffix = text.ago;
-    ms = -ms;
-  }
-  var seconds = Math.floor(ms / 1000);
-  var minutes = Math.floor(seconds / 60);
-  var hours = Math.floor(minutes / 60);
-  var days = Math.floor(hours / 24);
-  var months = Math.floor(days / 30);
-  var years = Math.floor(months / 12);
-  switch (true) {
-    case years > 0:
-      num = years;
-      unit = text.year;
-      break;
-    case months > 0:
-      num = months;
-      unit = text.month;
-      break;
-    case days > 0:
-      num = days;
-      unit = text.day;
-      break;
-    case hours > 0:
-      num = hours;
-      unit = text.hour;
-      break;
-    case minutes > 0:
-      num = minutes;
-      unit = text.minute;
-      break;
-    default:
-      num = seconds;
-      unit = text.second;
-      break;}
-
-
-  if (locale === 'en') {
-    if (num === 1) {
-      num = 'a';
-    } else {
-      unit += 's';
-    }
-  }
-
-  return text.template.replace(/{\s*num\s*}/g, num + '').replace(/{\s*unit\s*}/g, unit).replace(/{\s*suffix\s*}/g,
-  suffix);
-}
-
-/***/ }),
-
 /***/ 5:
-/*!*************************************************************************!*\
-  !*** /Users/a13571442004/Documents/HBuilderProjects/niceApp/pages.json ***!
-  \*************************************************************************/
+/*!***************************************************!*\
+  !*** F:/FrontEnd/NiceApp/NiceApp-main/pages.json ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9438,10 +9301,10 @@ function friendlyDate(time, _ref)
 
 /***/ }),
 
-/***/ 60:
-/*!******************************************************************************************************************!*\
-  !*** /Users/a13571442004/Documents/HBuilderProjects/niceApp/uni_modules/uni-icons/components/uni-icons/icons.js ***!
-  \******************************************************************************************************************/
+/***/ 66:
+/*!********************************************************************************************!*\
+  !*** F:/FrontEnd/NiceApp/NiceApp-main/uni_modules/uni-icons/components/uni-icons/icons.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
