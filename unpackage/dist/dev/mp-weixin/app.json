@@ -10,8 +10,8 @@
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "NiceApp",
-    "navigationBarBackgroundColor": "white",
-    "backgroundColor": "white"
+    "navigationBarBackgroundColor": "#000000",
+    "backgroundColor": "#000000"
   },
   "tabBar": {
     "selectedColor": "#b8ecf9",
@@ -25,25 +25,19 @@
         "selectedIconPath": "static/icon/home-active.png"
       },
       {
-        "text": "更多",
+        "text": "收藏",
         "pagePath": "pages/more/more",
         "iconPath": "static/icon/cart.png",
         "selectedIconPath": "static/icon/cart-active.png"
       },
       {
-        "text": "计划",
+        "text": "消息",
         "pagePath": "pages/plan/plan",
         "iconPath": "static/icon/news.png",
         "selectedIconPath": "static/icon/news-active.png"
       },
       {
-        "text": "咨讯",
-        "pagePath": "pages/news/news",
-        "iconPath": "static/icon/news.png",
-        "selectedIconPath": "static/icon/news-active.png"
-      },
-      {
-        "text": "个人中心",
+        "text": "我",
         "pagePath": "pages/userInfo/userInfo",
         "iconPath": "static/icon/member.png",
         "selectedIconPath": "static/icon/member-active.png"
