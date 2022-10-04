@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }))
 
 // res.cc
 app.use(function(req, res, next){
-    res.cc = function (err, status = 1) {
+    res.cc = function (err, status) {
         res.send({
             status,
             message: err instanceof Error ? err.message : err,
@@ -57,10 +57,13 @@ app.use('/home', home)
 // 定义错误级别的中间件
 app.use((err, req, res, next) => {
     // 验证失败导致的错误
-    if (err instanceof Joi.ValidationError) return res.cc(err)
-    if (err.name === 'UnauthorizedError') return res.cc(err)
+    if (err instanceof Joi.ValidationError) return res.cc(err, 202)
+    if (err.name === 'UnauthorizedError') return res.cc(err, 203)
     // 其他错误
-    res.send('未知错误')
+    res.send({
+        status: 201,
+        message: '未知错误',
+    })
 })
 
 
