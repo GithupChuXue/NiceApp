@@ -111,6 +111,26 @@ exports.collect_id_share = (req, res) => {
 }
 
 
+// 删除目标share
+// /share/delete/:id
+exports.delete_share_id = (req, res) => {
+    const sql = 'select * from shareinfo where shareid=?'
+    db.query(sql, req.params.id, (err, results) => {
+        if (err) return res.cc(err, 400)
+        if (results.length !== 1) return res.cc(err, 404)
+        const sql = 'update shareinfo set is_delete=1 where shareid=?'
+        db.query(sql, req.params.id, (err, results) => {
+            if (err) return res.cc(err, 400)
+            if (results.affectedRows !== 1) return res.cc(err, 404)
+            res.send({
+                status: 200,
+                message: `成功删除id:${req.params.id}的share`,
+            })
+        })
+    })
+}
+
+
 /* exports.share_upload_img = (req, res) => {
     if (req.file === undefined) return res.cc('file wrong')
     console.log(req.file)

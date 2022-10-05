@@ -42,4 +42,8 @@ router.get('/show/:id', expressJoi(id_share_schema), shareRouterHandle.get_id_sh
 // /share/collect/:id
 router.get('/collect/:id', expressJoi(id_share_schema), shareRouterHandle.collect_id_share)
 
+// 删除目标内容
+// /share/delete/:id
+router.get('/delete/:id', expressJoi(id_share_schema), shareRouterHandle.delete_share_id)
+
 module.exports = router

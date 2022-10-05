@@ -14,6 +14,8 @@ router.get('/show/:id', expresssJoi(id_comment_schema), commentRouterHandle.show
 // /comment/upload
 router.post('/upload', expresssJoi(text_comment_schema), commentRouterHandle.upload_comment)
 
+// /comment/delete/:id
+router.get('/delete/:id', expresssJoi(id_comment_schema), commentRouterHandle.delete_comment_id)
 
 
 module.exports = router

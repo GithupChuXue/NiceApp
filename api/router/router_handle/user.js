@@ -43,7 +43,6 @@ exports.userLogin = function (req, res) {
         if (results.length !== 1) return res.cc('登录失败', 404)
         const compareResult = bcrypt.compareSync(userinfo.password, results[0].password)
         if (!compareResult) return res.cc('密码错误', 400)
-
         // 在服务器端生成token
         const user = { ...results[0], password: '' }
         const tokenStr = jwt.sign(user, config.jwtSecretKey, { expiresIn: config.expiresIn })

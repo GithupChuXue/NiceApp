@@ -54,3 +54,19 @@ exports.upload_comment = (req, res) => {
     }
 }
 
+exports.delete_comment_id = (req, res) => {
+    const sql = 'select * from comment where commentid=?'
+    db.query(sql, req.params.id, (err, results) => {
+        if (err) return res.cc(err, 400)
+        if (results.length !== 1) return res.cc(err, 404)
+        const sql = 'update comment set is_delete=1 where commentid=?'
+        db.query(sql, req.params.id, (err, results) => {
+            if (err) return res.cc(err, 400)
+            if (results.affectedRows !== 1) return res.cc(err, 404)
+            res.send({
+                status: 200,
+                message: `成功删除id:${req.params.id}的comment`,
+            })
+        })
+    })
+}
