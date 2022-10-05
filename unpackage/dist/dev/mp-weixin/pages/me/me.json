@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "nav": "/components/nav/nav"
+  }
+}
