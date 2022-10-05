@@ -1,72 +1,115 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	    {
+            "path" : "pages/index/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "nice app"
+            }
+            
+        },
 		{
-			"path": "pages/index/index",
+			"path": "pages/message/message",
 			"style": {
-				"enablePullDownRefresh": true
+				"navigationBarTextStyle": "black",
+				"navigationBarTitleText": "消息"
 			}
-		}, {
-			"path": "pages/news/news",
-			"style": {
-				"enablePullDownRefresh": true
-			}
-		}, {
-			"path": "pages/more/more",
-			"style": {
-				"enablePullDownRefresh": true
-			}
-
-		}, {
-			"path": "pages/userInfo/userInfo",
-			"style": {
-				"enablePullDownRefresh": false
-			}
-		}, {
-			"path": "pages/plan/plan",
-			"style": {
-				"navigationBarTitleText": "计划",
-				"enablePullDownRefresh": false
-			}
-
 		}
-	],
+        ,{
+            "path" : "pages/me/me",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/star/star",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "收藏"
+            }
+            
+        }
+        ,{
+            "path" : "pages/post/post",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "发布",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/detail/detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "详情"
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "nice app",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#F8F8F8",
+		"backgroundTextStyle": "light",
+		"enablePullDownRefresh": true,
+		"app-plus": {
+			"pullToRefresh": {
+				"support": true,
+				"color": "#EE9572",
+				"style": "circle"
+			}
+		}
+	},
 	"tabBar": {
-		"selectedColor": "#b8ecf9",
-		"color": "#999",
-		"borderStyle": "black",
-		"list": [{
-				"text": "首页",
+		"borderStyle": "#D9D9D9",
+		"backgroundColor": "#FFFFFF",
+		"list": [
+			{
+				"text": "",
 				"pagePath": "pages/index/index",
 				"iconPath": "static/icon/home.png",
-				"selectedIconPath": "static/icon/home-active.png"
+				"selectedIconPath": "static/icon/home_cur.png"
 			},
 			{
-				"text": "收藏",
-				"pagePath": "pages/more/more",
-				"iconPath": "static/icon/cart.png",
-				"selectedIconPath": "static/icon/cart-active.png"
+				"text": "",
+				"pagePath": "pages/star/star",
+				"iconPath": "static/icon/star.png",
+				"selectedIconPath": "static/icon/star_cur.png"
 			},
 			{
-				"text": "消息",
-				"pagePath": "pages/plan/plan",
-				"iconPath": "static/icon/news.png",
-				"selectedIconPath": "static/icon/news-active.png"
+				"text": "",
+				"pagePath": "pages/post/post",
+				"iconPath": "static/icon/post.png",
+				"selectedIconPath": "static/icon/post_cur.png"
 			},
 			{
-				"text": "我",
-				"pagePath": "pages/userInfo/userInfo",
-				"iconPath": "static/icon/member.png",
-				"selectedIconPath": "static/icon/member-active.png"
+				"text": "",
+				"pagePath": "pages/message/message",
+				"iconPath": "static/icon/messages.png",
+				"selectedIconPath": "static/icon/messages_cur.png"
+			},
+			{
+				"text": "",
+				"pagePath": "pages/me/me",
+				"iconPath": "static/icon/account.png",
+				"selectedIconPath": "static/icon/account_cur.png"
 			}
 		]
 	},
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "NiceApp",
-		//"navigationBarBackgroundColor": "white",
-		//"backgroundColor": "white",
-		"navigationBarBackgroundColor": "#000000",
-		"backgroundColor": "#000000"
-	},
-	"uniIdRouter": {}
+	"uniIdRouter": {},
+	"condition" : { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [
+			{
+				"name": "详情", //模式名称
+				"path": "pages/detail/detail", //启动页面，必选
+				"query": "id=80" //启动参数，在页面的onLoad函数里面得到
+			}
+		]
+	}
 }

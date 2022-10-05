@@ -5,7 +5,7 @@
 		<!-- 搜索栏 -->
 		<view class="search">
 			<table>
-				<input class="ipt" type="text" confirm-type="search" placeholder="搜索感兴趣的内容吧">
+				<input class="ipt" type="text" placeholder="搜索感兴趣的内容吧">
 				<button class="enter_btn" type="default" plain size="mini" form-type="submit">搜索</button>
 			</table>
 		</view>
