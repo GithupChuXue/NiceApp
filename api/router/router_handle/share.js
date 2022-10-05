@@ -42,16 +42,24 @@ exports.get_all_share = (req, res) => {
 
 // /share/show/:id
 // 根据id读取内容
+// 读取share本身的内容
+// 读取share的评论
 exports.get_id_share = (req, res) => {
     const sql = 'select * from shareinfo where shareid='+req.params.id
     console.log(sql)
     db.query(sql, (err, results) => {
         if(err) return res.cc(err, 400)
         if(results.length !== 1) return res.cc(err, 404)
-        res.send({
-            status: 200,
-            message: `获取id:${req.params.id}的内容成功`,
-            data: results[0]
+        const share_content = results[0]
+        const sql = 'select * from comment where shareid='+req.params.id
+        db.query(sql, (err, results) => {
+            if(err) return res.cc(err, 400)
+            return res.send({
+                status: 200,
+                message: `成功读取id:${req.params.id}的share以及其评论`,
+                shareData: share_content,
+                commentData: results,
+            })
         })
     })
 }
