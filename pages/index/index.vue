@@ -14,7 +14,7 @@
 		<view class="show">
 			<uni-list>
 				<!-- to 属性携带参数跳转详情页面，当前只为参考 -->
-				<uni-list-item direction="column" v-for="item in content" :key="item.id" :to="'/pages/detail/detail?id='+item.id">
+				<uni-list-item direction="column" v-for="item in content" :key="item.id">
 					<!-- 通过header插槽定义列表的标题 -->
 					<template v-slot:header>
 						<view class="uni-note">{{item.publisher}}    {{item.pub_time}}</view>
@@ -34,10 +34,24 @@
 					<!-- 同步footer插槽定义列表底部的显示效果 -->
 					<template v-slot:footer>
 						<view class="uni-footer">
-							<text class="uni-footer-text">点赞</text>
-							<text class="uni-footer-text">收藏</text>
-							<text class="uni-footer-text">评论</text>
-							<text class="uni-footer-text">分享</text>
+							<text class="uni-footer-text" @click="ThumbsUp(item.id)">点赞</text>
+							<uni-popup ref="popup_thumbsup" type="center">点赞！</uni-popup>
+							
+							<text class="uni-footer-text" @click="Collect(item.id)">收藏</text>
+							<uni-popup ref="popup_collect" type="center">收藏！</uni-popup>
+							
+							<text class="uni-footer-text" @click="Comment(item.id)">评论</text>
+							<uni-popup ref="inputDialog" type="dialog">
+								<uni-popup-dialog type="center" mode="input" @confirm="confirm">
+								</uni-popup-dialog>
+							</uni-popup>
+							
+							<text class="uni-footer-text" @click="Share(item.id)">分享</text>
+							<uni-popup ref="share" type="share" safeArea backgroundColor="#fff">
+								<uni-popup-share title="分享到" @select="select">
+								</uni-popup-share>
+							</uni-popup>
+							
 						</view>
 					</template>
 				</uni-list-item>
@@ -55,6 +69,10 @@
 	import uniList from '@/uni_modules/uni-list/components/uni-list/uni-list.vue';
 	import uniListItem from '@/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue';
 	import uniLoadMore from '@/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue';
+	import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
+	import uniPopupDialog from '@/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue';
+	import uniPopupShare from '@/uni_modules/uni-popup/components/uni-popup-share/uni-popup-share.vue';
+	
 	import read from '../../services/read.js';	
 	
 	export default {
@@ -62,7 +80,10 @@
 		components:{
 			uniList,
 			uniListItem,
-			uniLoadMore
+			uniLoadMore,
+			uniPopup,
+			uniPopupDialog,
+			uniPopupShare
 		},
 		
 		data() {
@@ -78,7 +99,21 @@
 		},
 		
 		methods: {
-			
+			ThumbsUp(id) {
+				this.$refs.popup_thumbsup[id].open()
+			},
+			Collect(id) {
+				this.$refs.popup_collect[id].open()
+			},
+			Comment(id) {
+				this.$refs.inputDialog[id].open()
+			},
+			confirm(value) {
+				console.log(value);
+			},
+			Share(id) {
+				this.$refs.share[id].open()
+			}
 		},
 		
 		//下拉刷新回调函数
