@@ -1,0 +1,74 @@
+
+.login-content.data-v-b237504c {
+	padding: 70px 10px 35px;
+	text-align: center;
+	color: #333333;
+}
+.login-title.data-v-b237504c {
+	font-size: 26px;
+	font-weight: bold;
+	margin-bottom: 31px;
+}
+.login-content input.data-v-b237504c {
+	height: 50px;
+	background: #F8F8F8;
+	border-radius: 25px;
+	text-align: left;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 15px;
+}
+.iphone.data-v-b237504c,
+.password.data-v-b237504c,
+.test.data-v-b237504c {
+	position: relative;
+	margin-bottom: 30px;
+}
+.iphone .uni-icons.data-v-b237504c,
+.password .uni-icons.data-v-b237504c {
+	position: absolute;
+	top: 14px;
+	right: 30px;
+}
+.test-btn.data-v-b237504c,
+.password-btn.data-v-b237504c {
+	color: #46595f;
+	font-size: 15px;
+	text-align: right;
+}
+.footer.data-v-b237504c {
+	top: -15px;
+	display: flex;
+	justify-content: space-between;
+}
+.register-btn.data-v-b237504c {
+	margin-left: 20px;
+	text-align: left;
+	color: #46595f;
+}
+.getTest.data-v-b237504c {
+	color: #46595f;
+	font-size: 15px;
+	width: 122px;
+	height: 50px;
+	border: 1px solid #46595f;
+	border-radius: 25px;
+	line-height: 50px;
+}
+.test.data-v-b237504c {
+	display: flex;
+	justify-content: space-between;
+}
+.login-btn.data-v-b237504c {
+	width: 355px;
+	height: 45px;
+	background: #46595f;
+	border-radius: 36px;
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+	line-height: 45px;
+	position: fixed;
+	bottom: 60px;
+}
+
