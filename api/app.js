@@ -53,6 +53,9 @@ app.use('/share', share)
 const home = require('./router/home')
 app.use('/home', home)
 
+// /comment
+const comment = require('./router/comment')
+app.use('/comment', comment)
 
 // 定义错误级别的中间件
 app.use((err, req, res, next) => {

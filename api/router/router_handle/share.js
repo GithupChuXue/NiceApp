@@ -11,7 +11,7 @@ const sd = require('silly-datetime')
 
 // /share/upload
 // 上传内容
-exports.share_upload = (req, res, next) => {
+exports.share_upload = (req, res) => {
     const sql = 'insert into shareinfo set ?'
     const time = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss')
     // console.log(req.body)
