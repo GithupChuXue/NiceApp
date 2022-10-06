@@ -28,7 +28,7 @@
 							</view>
 							<view class="uni-thumb">
 								<!-- 当前判断长度只为简单判断类型，实际业务中，根据逻辑直接渲染即可 -->
-								<image src="@/images/beauty.webp" mode="aspectFill"></image>
+								<image :src="require(`../../api/image/${item.img}`)" mode="aspectFill"></image>
 							</view>
 						</view>
 					</template>

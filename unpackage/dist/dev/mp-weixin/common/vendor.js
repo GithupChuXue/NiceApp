@@ -20133,9 +20133,7 @@ var store = new _vuex.default.Store({
 
 
     },
-
     // 获取发布信息
-
     getPublishInfo: function getPublishInfo() {
       uni.requset({
         url: "http://127.0.0.1:8888/my/myshare",
@@ -20145,7 +20143,40 @@ var store = new _vuex.default.Store({
           'Authorization': "".concat(this.state.token) } });
 
 
+    },
+    // 发布评论
+    PublishComments: function PublishComments(_ref7,
+
+    config) {var commit = _ref7.commit;
+      uni.requset({
+        url: "http://127.0.0.1:8888/comment/upload",
+        methods: "POST",
+        header: {
+          'content-type': "application/x-www-form-urlencoded",
+          'Authorization': "".concat(this.state.token) },
+
+        data: {
+          commentid: config.commentid, // 若对评论进行评论，其为对象评论的commentid；若对内容share进行评论，该参数为0。
+          shareid: config.shareid, // 目标评论所在的内容或目标内容的shareid。
+          commenttext: config.commenttext //评论内容
+        } });
+
+    },
+    // 获取某一个评论的详细信息
+    getCommentsInfo: function getCommentsInfo(_ref8,
+
+    id) {var commit = _ref8.commit;
+      uni.requset({
+        url: "http://127.0.0.1:8888/comment/show/".concat(id), // id为评论的id，可直接进行拼接（替换:id）
+        methods: "GET",
+        header: {
+          'content-type': "application/x-www-form-urlencoded",
+          'Authorization': "".concat(this.state.token) } });
+
+
     } } });var _default =
+
+
 
 
 
@@ -21407,6 +21438,125 @@ var index_cjs = {
 module.exports = index_cjs;
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 2)))
+
+/***/ }),
+/* 288 */
+/*!**************************************************************************************!*\
+  !*** /Users/a13571442004/Documents/HBuilderProjects/niceApp/api/image sync ^\.\/.*$ ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./1664871499960_12.png": 289,
+	"./1664871517299_12.png": 290,
+	"./1664875353108_12.png": 291,
+	"./1664876768549_12.png": 292,
+	"./1664950381789_12.png": 293,
+	"./1664950383661_12.png": 294,
+	"./1664950384794_12.png": 295,
+	"./1664950385729_12.png": 296
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 288;
+
+/***/ }),
+/* 289 */
+/*!*********************************************************************************************!*\
+  !*** /Users/a13571442004/Documents/HBuilderProjects/niceApp/api/image/1664871499960_12.png ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1664871499960_12.png";
+
+/***/ }),
+/* 290 */
+/*!*********************************************************************************************!*\
+  !*** /Users/a13571442004/Documents/HBuilderProjects/niceApp/api/image/1664871517299_12.png ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1664871517299_12.png";
+
+/***/ }),
+/* 291 */
+/*!*********************************************************************************************!*\
+  !*** /Users/a13571442004/Documents/HBuilderProjects/niceApp/api/image/1664875353108_12.png ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1664875353108_12.png";
+
+/***/ }),
+/* 292 */
+/*!*********************************************************************************************!*\
+  !*** /Users/a13571442004/Documents/HBuilderProjects/niceApp/api/image/1664876768549_12.png ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1664876768549_12.png";
+
+/***/ }),
+/* 293 */
+/*!*********************************************************************************************!*\
+  !*** /Users/a13571442004/Documents/HBuilderProjects/niceApp/api/image/1664950381789_12.png ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1664950381789_12.png";
+
+/***/ }),
+/* 294 */
+/*!*********************************************************************************************!*\
+  !*** /Users/a13571442004/Documents/HBuilderProjects/niceApp/api/image/1664950383661_12.png ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1664950383661_12.png";
+
+/***/ }),
+/* 295 */
+/*!*********************************************************************************************!*\
+  !*** /Users/a13571442004/Documents/HBuilderProjects/niceApp/api/image/1664950384794_12.png ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1664950384794_12.png";
+
+/***/ }),
+/* 296 */
+/*!*********************************************************************************************!*\
+  !*** /Users/a13571442004/Documents/HBuilderProjects/niceApp/api/image/1664950385729_12.png ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1664950385729_12.png";
 
 /***/ })
 ]]);

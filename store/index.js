@@ -169,9 +169,7 @@ const store = new Vuex.Store({
 				},
 			})
 		},
-
 		// 获取发布信息
-
 		getPublishInfo() {
 			uni.requset({
 				url: "http://127.0.0.1:8888/my/myshare",
@@ -182,6 +180,39 @@ const store = new Vuex.Store({
 				},
 			})
 		},
+		// 发布评论
+		PublishComments({
+			commit
+		}, config) {
+			uni.requset({
+				url: "http://127.0.0.1:8888/comment/upload",
+				methods: "POST",
+				header: {
+					'content-type': "application/x-www-form-urlencoded",
+					'Authorization': `${this.state.token}`,
+				},
+				data: {
+					commentid: config.commentid, // 若对评论进行评论，其为对象评论的commentid；若对内容share进行评论，该参数为0。
+					shareid: config.shareid, // 目标评论所在的内容或目标内容的shareid。
+					commenttext: config.commenttext //评论内容
+				},
+			})
+		},
+		// 获取某一个评论的详细信息
+		getCommentsInfo({
+			commit
+		}, id) {
+			uni.requset({
+				url: `http://127.0.0.1:8888/comment/show/${id}`, // id为评论的id，可直接进行拼接（替换:id）
+				methods: "GET",
+				header: {
+					'content-type': "application/x-www-form-urlencoded",
+					'Authorization': `${this.state.token}`
+				},
+			})
+		},
+
+
 	}
 })
 
