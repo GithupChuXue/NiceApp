@@ -131,13 +131,26 @@
   width: 80%;
   text-align: center;
   padding: 20rpx 0rpx;
-  background-color: #FFF8DC;
+}
+.post .post_detail .content {
+  margin-top: 100rpx;
+  text-align: center;
+}
+.post .post_detail .content .picture {
+  width: 300rpx;
+  height: 300rpx;
+  margin: 0 auto;
+  border: #777 1px solid;
+  box-shadow: 0 0 8px #999;
+}
+.post .post_detail .content .picture image {
+  width: 100%;
 }
 .post .post_detail .body {
   border-radius: 10rpx;
-  margin-top: 20rpx;
+  margin-top: 40rpx;
   margin-left: 50rpx;
-  width: 80%;
+  width: 85%;
   height: 400rpx;
   text-align: center;
   background-color: #FFF8DC;

@@ -14,21 +14,21 @@
 		<view class="show">
 			<uni-list>
 				<!-- to 属性携带参数跳转详情页面，当前只为参考 -->
-				<uni-list-item direction="column" v-for="item in content" :key="item.id"
-					:to="'/pages/detail/detail?id='+item.id">
+				<uni-list-item direction="column" v-for="(item,index) in conllectInfo" :key="item.shareid"
+					:to="'/pages/detail/detail?id='+item.shareid">
 					<!-- 通过header插槽定义列表的标题 -->
 					<template v-slot:header>
-						<view class="uni-note">{{item.publisher}} {{item.pub_time}}</view>
+						<view class="uni-note">{{item.publisher}} {{item.time}}</view>
 					</template>
 					<!-- 通过body插槽定义列表内容显示 -->
 					<template v-slot:body>
 						<view class="uni-list-box">
 							<view class="uni-content">
-								<view class="uni-title-sub uni-ellipsis-2">{{item.excerpt}}</view>
+								<view class="uni-title-sub uni-ellipsis-2">{{item.title}}</view>
 							</view>
 							<view class="uni-thumb">
 								<!-- 当前判断长度只为简单判断类型，实际业务中，根据逻辑直接渲染即可 -->
-								<image :src="item.imgs[0]" mode="aspectFill"></image>
+								<image src="@/images/beauty.webp" mode="aspectFill"></image>
 							</view>
 						</view>
 					</template>
@@ -43,9 +43,7 @@
 					</template>
 				</uni-list-item>
 			</uni-list>
-			<!-- 通过loadMore 组件实现上拉加载效果，如需自定义显示内容，可参考：https://ext.dcloud.net.cn/plugin?id=29 -->
-			<!-- <uni-load-more v-if="loading || options.status === 'noMore'" :status="options.status" /> -->
-			<uni-load-more :status="status" :icon-size="10" :content-text="contentText" v-if="this.status!='more'" />
+			<!-- <uni-load-more :status="status" :icon-size="10" :content-text="contentText" v-if="this.status!='more'" /> -->
 		</view>
 
 	</view>
@@ -67,23 +65,32 @@
 		},
 
 		data() {
-			return {}
+			return {
+				content: ""
+			}
 		},
 
 		methods: {
 			// 通过
 		},
-		computed: {},
-
+		computed: {
+			conllectInfo() {
+				return this.$store.state.conllectInfo;
+			}
+		},
+		mounted() {
+			this.$store.dispatch("getConllectList");
+			this.$store.dispatch("getConllectInfo");
+		},
 		onShow() {
-			console.log("页面出现");
+
 			this.$store.dispatch("getConllectList");
 			this.$store.dispatch("getConllectInfo");
 		},
 		//下拉刷新回调函数
-		onPullDownRefresh() {
-			console.log("上拉刷新");
-		},
+		// onPullDownRefresh() {
+		// 	console.log("上拉刷新");
+		// },
 
 		//上拉加载回调函数
 		onReachBottom() {}

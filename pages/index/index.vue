@@ -83,12 +83,8 @@
 			uniPopupDialog,
 			uniPopupShare
 		},
-		onLoad() {
-			this.$store.dispatch("getAllinInfo");
-		},
 		onShow() {
 			this.$store.dispatch("getAllinInfo");
-			console.log(this.$store.state)
 		},
 
 		mounted() {
@@ -112,8 +108,11 @@
 			ThumbsUp(id) {
 				this.$refs.popup_thumbsup[id].open()
 			},
+			// 
 			Collect(id) {
-				this.$refs.popup_collect[id].open()
+				this.$refs.popup_collect[id].open();
+				// 派发收藏的action
+				this.$store.dispatch("getStar", shareid)
 			},
 			Comment(id) {
 				this.$refs.inputDialog[id].open()
@@ -124,6 +123,7 @@
 			Share(id) {
 				this.$refs.share[id].open()
 			},
+			// 触发收藏的方法
 
 		},
 		computed: {

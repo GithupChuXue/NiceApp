@@ -19972,7 +19972,7 @@ var store = new _vuex.default.Store({
     userInfo: {},
     List: [],
     conllectList: [],
-    conllectArr: [] },
+    conllectInfo: [] },
 
 
   mutations: {
@@ -19989,8 +19989,9 @@ var store = new _vuex.default.Store({
       state.conllectList = conllectList;
     },
     // 获取收藏的详细信息
-    GetConllectInfo: function GetConllectInfo(state, conllectArr) {
-      state.conllectArr = conllectArr;
+    GetConllecInfo: function GetConllecInfo(state, conllectInfo) {
+      state.conllectInfo = conllectInfo;
+      console.log("state中的conllectInfo", state.conllectInfo);
     } },
 
 
@@ -20051,11 +20052,13 @@ var store = new _vuex.default.Store({
         } });
 
     },
+    // 获取全部收藏的内容
     getConllectInfo: function getConllectInfo(_ref4)
 
     {var _this = this;var commit = _ref4.commit;
-      var conllectArr = [];
-      this.state.List.forEach(function (item) {
+      var conllectInfo = [];
+
+      this.state.conllectList.forEach(function (item) {
         if (item.shareid) {
           uni.request({
             url: "http://127.0.0.1:8888/share/show/".concat(item.shareid),
@@ -20066,15 +20069,15 @@ var store = new _vuex.default.Store({
 
             success: function success(res) {
               if (res.data.status === 200) {
-                conllectArr.push(res.data.data);
+                conllectInfo.push(res.data.data);
+                // console.log(conllectInfo)
               }
             } });
-
 
         }
 
       });
-      commit("GetConllectInfo", conllectArr);
+      commit("GetConllecInfo", conllectInfo);
     },
     //更改密码
     changPassword: function changPassword(_ref5,
@@ -20117,6 +20120,20 @@ var store = new _vuex.default.Store({
 
 
     },
+    // 收藏内容
+    getStar: function getStar(_ref6,
+
+    shareid) {var commit = _ref6.commit;
+      uni.requset({
+        url: "http://127.0.0.1:8888/share/collect/".concat(shareid), // id是内容的shareid
+        methods: "GET",
+        header: {
+          'content-type': "application/x-www-form-urlencoded",
+          'Authorization': "".concat(this.state.token) } });
+
+
+    },
+
     // 获取发布信息
 
     getPublishInfo: function getPublishInfo() {

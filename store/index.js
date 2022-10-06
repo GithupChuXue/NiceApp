@@ -8,7 +8,7 @@ const store = new Vuex.Store({
 		userInfo: {},
 		List: [],
 		conllectList: [],
-		conllectArr: [],
+		conllectInfo: [],
 
 	},
 	mutations: {
@@ -25,8 +25,9 @@ const store = new Vuex.Store({
 			state.conllectList = conllectList;
 		},
 		// 获取收藏的详细信息
-		GetConllectInfo(state, conllectArr) {
-			state.conllectArr = conllectArr;
+		GetConllecInfo(state, conllectInfo) {
+			state.conllectInfo = conllectInfo;
+			console.log("state中的conllectInfo", state.conllectInfo);
 		}
 
 	},
@@ -87,11 +88,13 @@ const store = new Vuex.Store({
 				}
 			})
 		},
+		// 获取全部收藏的内容
 		getConllectInfo({
 			commit
 		}) {
-			let conllectArr = [];
-			this.state.List.forEach((item) => {
+			let conllectInfo = [];
+
+			this.state.conllectList.forEach((item) => {
 				if (item.shareid) {
 					uni.request({
 						url: `http://127.0.0.1:8888/share/show/${item.shareid}`,
@@ -102,15 +105,15 @@ const store = new Vuex.Store({
 						},
 						success(res) {
 							if (res.data.status === 200) {
-								conllectArr.push(res.data.data);
+								conllectInfo.push(res.data.data);
+								// console.log(conllectInfo)
 							}
 						}
-
 					})
 				}
 
 			});
-			commit("GetConllectInfo", conllectArr);
+			commit("GetConllecInfo", conllectInfo)
 		},
 		//更改密码
 		changPassword({
@@ -153,6 +156,20 @@ const store = new Vuex.Store({
 			})
 
 		},
+		// 收藏内容
+		getStar({
+			commit
+		}, shareid) {
+			uni.requset({
+				url: `http://127.0.0.1:8888/share/collect/${shareid}`, // id是内容的shareid
+				methods: "GET",
+				header: {
+					'content-type': "application/x-www-form-urlencoded",
+					'Authorization': `${this.state.token}`
+				},
+			})
+		},
+
 		// 获取发布信息
 
 		getPublishInfo() {
@@ -164,7 +181,7 @@ const store = new Vuex.Store({
 					'Authorization': `${this.state.token}`
 				},
 			})
-		}
+		},
 	}
 })
 

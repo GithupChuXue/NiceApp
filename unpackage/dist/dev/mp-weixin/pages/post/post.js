@@ -151,6 +151,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -163,10 +168,11 @@ var _default =
   methods: {
     // // 上传图片
     getImage: function getImage() {var _this = this;
-      console.log("拿取图片");
+      console.log("拿取图片", this.imagePaths);
+
       uni.chooseImage({
         count: 3,
-        sizeType: "original",
+        // sizeType: "original",
         success: function success(res) {
           _this.imagePaths = res.tempFilePaths;
           console.log(res); //取到图像
@@ -175,17 +181,19 @@ var _default =
 
     },
     // 发布内容
+    // 发布内容
     uploadeShare: function uploadeShare() {
       console.log("上传内容");
+      console.log(this.$store.state.token);
       uni.uploadFile({
         url: 'http://127.0.0.1:8888/share/upload', // 接口地址
         file: this.imagePaths[0], //选取图像序列中的第一张，后端是一张一张传
-        name: this.title, // name：必须为img
+        name: 'img', // name：必须为img
         fileType: 'image', //类型为image
         header: {
-          'Authorization': "".concat(this.$store.token) },
+          'Authorization': "".concat(this.$store.state.token) },
 
-        method: "POST",
+        //method: "POST",
         formData: {
           'title': this.title, //内容的文字标题
           'text': this.content // 分享的文字内容

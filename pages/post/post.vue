@@ -3,7 +3,12 @@
 		<view class="post_detail">
 			<view>
 				<input class="title" type="text" placeholder="标题" v-model="title">
-				<input class="body" type="text" placeholder="写点什么" v-model="content">
+				<view class="content">
+					<view class="picture">
+						<image :src="imagePaths[0]" mode="widthFix"></image>
+					</view>
+					<input class="body" type="text" placeholder="写点什么" v-model="content">
+				</view>
 			</view>
 			<view>
 				<view class="tag">@某位用户</view>
@@ -29,10 +34,11 @@
 		methods: {
 			// // 上传图片
 			getImage() {
-				console.log("拿取图片")
+				console.log("拿取图片", this.imagePaths)
+
 				uni.chooseImage({
 					count: 3,
-					sizeType: "original",
+					// sizeType: "original",
 					success: (res) => {
 						this.imagePaths = res.tempFilePaths
 						console.log(res) //取到图像
@@ -41,17 +47,19 @@
 				})
 			},
 			// 发布内容
+			// 发布内容
 			uploadeShare() {
 				console.log("上传内容");
+				console.log(this.$store.state.token)
 				uni.uploadFile({
 					url: 'http://127.0.0.1:8888/share/upload', // 接口地址
 					file: this.imagePaths[0], //选取图像序列中的第一张，后端是一张一张传
-					name: this.title, // name：必须为img
+					name: 'img', // name：必须为img
 					fileType: 'image', //类型为image
 					header: {
-						'Authorization': `${this.$store.token}`
+						'Authorization': `${this.$store.state.token}`
 					},
-					method: "POST",
+					//method: "POST",
 					formData: {
 						'title': this.title, //内容的文字标题
 						'text': this.content, // 分享的文字内容
@@ -81,14 +89,30 @@
 				width: 80%;
 				text-align: center;
 				padding: 20rpx 0rpx;
-				background-color: #FFF8DC;
+			}
+
+			.content {
+				margin-top: 100rpx;
+				text-align: center;
+
+				.picture {
+					width: 300rpx;
+					height: 300rpx;
+					margin: 0 auto;
+					border: #777 1px solid;
+					box-shadow: 0 0 8px #999;
+
+					image {
+						width: 100%;
+					}
+				}
 			}
 
 			.body {
 				border-radius: 10rpx;
-				margin-top: 20rpx;
+				margin-top: 40rpx;
 				margin-left: 50rpx;
-				width: 80%;
+				width: 85%;
 				height: 400rpx;
 				text-align: center;
 				background-color: #FFF8DC;

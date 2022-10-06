@@ -3,9 +3,11 @@
 
 	export default {
 		onLaunch: function() {
-			console.log("App Launch");
-			read.refresh();
-			console.log("重置了读取位置索引");
+			this.$store.dispatch("getUserInfo")
+			this.$store.dispatch("getAllinInfo")
+			this.$store.dispatch("getConllectList")
+			this.$store.dispatch("getConllectInfo")
+
 		},
 		onShow: function() {
 			console.log('App Show')
