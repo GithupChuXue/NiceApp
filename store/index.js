@@ -78,7 +78,7 @@ const store = new Vuex.Store({
 				url: "http://127.0.0.1:8888/my/mycollection",
 				methods: "GET",
 				header: {
-					'content-type': "application/x-www-form-urlencoded",
+					//'content-type': "application/x-www-form-urlencoded",
 					'Authorization': `${this.state.token}`
 				},
 				success(res) {
