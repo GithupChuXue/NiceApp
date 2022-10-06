@@ -37,7 +37,7 @@ exports.getUserShare = (req, res) => {
 // /my/mycollection
 exports.getUserCollection = (req, res) => {
     // 定义查询用户信息的sql语句
-    const sql = 'select * from collect where userid=? and discollect=0'
+    const sql = 'select * from shareinfo where shareid in (select shareid from collect where userid=? and discollect=0)'
     db.query(sql, req.user.userid, (err, results) => {
         if (err) return res.cc(err, 400)
         if (results.length === 0) return res.cc('收藏为空', 404)
