@@ -6,9 +6,14 @@ Vue.config.productionTip = false
 import uView from "uview-ui"
 // 注册uView
 Vue.use(uView)
+// 引入vuex仓库
+import store from './store'
+// 绑定到全局
+Vue.prototype.$password = store
 App.mpType = 'app'
 const app = new Vue({
-	...App
+	...App,
+	store
 })
 app.$mount()
 // #endif
@@ -26,7 +31,8 @@ import {
 export function createApp() {
 	const app = createSSRApp(App)
 	return {
-		app
+		app,
+		store
 	}
 }
 // #endif

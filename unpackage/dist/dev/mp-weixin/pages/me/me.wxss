@@ -81,4 +81,15 @@
   left: 75%;
   top: 90rpx;
 }
+.user .login.data-v-259fb574 {
+  position: fixed;
+  background-color: #999;
+  left: 75%;
+  top: 90rpx;
+}
+.user .changeUserInfo.data-v-259fb574 {
+  position: fixed;
+  left: 10%;
+  top: 90rpx;
+}
 

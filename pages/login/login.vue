@@ -8,20 +8,12 @@
 			<uni-icons type="closeempty" color="#808080" size="25" v-if="showClearIcon" @click="clearIcon"></uni-icons>
 		</view>
 
-		<view class="password" v-if="type==2">
-			<!-- <input type="password" placeholder="输入密码" /> 要显示密码就不要设置type="password"-->
+		<view class="password">
 			<input placeholder="请输入密码" v-model="passsword" :password="showPassword" />
 			<uni-icons type="eye-filled" color="#808080" size="25" @click="changePassword"></uni-icons>
 		</view>
-		<!-- 		<view class="test" v-if="type==1">
-			<input type="text" placeholder="输入验证码 " v-model="testValue" />
-			<view class="getTest" type="default" @click="getTest()" v-if="showTimer">获取验证码</view>
-			<view class="getTest" type="default" v-else>{{timer+'s'}}</view>
-		</view> -->
 		<view class="footer">
 			<navigator class="register-btn" url="/pages/register/register">没账号去注册</navigator>
-			<!-- <view class="test-btn" v-if="type==2" @click="setLoginType(1)">手机验证码登录>></view><!-- 
-			<!-- <view class="password-btn" v-if="type==1" @click="setLoginType(2)">密码登录>></view> -->
 		</view>
 		<view class="login-btn" @click="Login">登录</view>
 
@@ -34,10 +26,8 @@
 			return {
 				username: '', //手机号码
 				passsword: '', //密码
-				testValue: '', //验证码
 				showPassword: true, //是否显示密码
 				showClearIcon: false, //是否显示清除按钮
-				type: 2, //登录的状态 - - - 1是验证码登录、2是密码登录
 				token: '',
 
 			}
@@ -99,9 +89,10 @@
 						if (res.data.status === 200) {
 							//存储token
 							that.token = res.data.token;
+							// 将输入的密码存储起来 用于修改密码
+							this.$passsword = that.passsword;
 							uni.setStorageSync('token', that.token); // 将登录信息以token的方式存在硬盘中
-							// uni.setStorageSync('userInfo', JSON.stringify(res.data)); // 将用户信息存储在硬盘中
-							uni.switchTab({ // 跳转到首页
+							uni.switchTab({
 								url: "/pages/index/index",
 							})
 							setTimeout(() => {
@@ -109,7 +100,7 @@
 									title: '登录成功',
 									icon: 'none'
 								})
-							}, 500)
+							}, 50)
 
 						} else {
 							uni.showToast({
@@ -122,10 +113,6 @@
 			},
 			// 下面是可以封装起来引入的部分
 			// 判断是否是正确的手机号码
-			isMobile(str) {
-				let reg = /^1\d{10}$/;
-				return reg.test(str)
-			},
 		},
 		// 去往注册页
 		goRegister() {

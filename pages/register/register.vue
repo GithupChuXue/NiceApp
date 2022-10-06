@@ -8,7 +8,7 @@
 			<uni-icons type="closeempty" color="#808080" size="25" v-if="showClearIcon" @click="clearIcon"></uni-icons>
 		</view>
 
-		<view class="password" v-if="type==2">
+		<view class="password">
 			<!-- <input type="password" placeholder="输入密码" /> 要显示密码就不要设置type="password"-->
 			<input placeholder="请输入密码" v-model="password" :password="showPassword" />
 			<uni-icons type="eye-filled" color="#808080" size="25" @click="changePassword"></uni-icons>
@@ -28,7 +28,6 @@
 				password: '', //密码
 				showPassword: true, //是否显示密码
 				showClearIcon: false, //是否显示清除按钮
-				type: 2, //登录的状态 - - - 1是验证码登录、2是密码登录
 				token: '',
 			}
 		},

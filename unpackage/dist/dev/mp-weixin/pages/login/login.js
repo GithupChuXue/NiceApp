@@ -96,24 +96,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
     return {
       username: '', //手机号码
       passsword: '', //密码
-      testValue: '', //验证码
       showPassword: true, //是否显示密码
       showClearIcon: false, //是否显示清除按钮
-      type: 2, //登录的状态 - - - 1是验证码登录、2是密码登录
       token: '' };
 
 
@@ -143,7 +133,7 @@ var _default =
       this.type = type;
     },
     // 密码登录
-    Login: function Login() {
+    Login: function Login() {var _this = this;
       var that = this;
       //用户名不为空
       if (!that.username) {
@@ -175,9 +165,10 @@ var _default =
           if (res.data.status === 200) {
             //存储token
             that.token = res.data.token;
+            // 将输入的密码存储起来 用于修改密码
+            _this.$passsword = that.passsword;
             uni.setStorageSync('token', that.token); // 将登录信息以token的方式存在硬盘中
-            // uni.setStorageSync('userInfo', JSON.stringify(res.data)); // 将用户信息存储在硬盘中
-            uni.switchTab({ // 跳转到首页
+            uni.switchTab({
               url: "/pages/index/index" });
 
             setTimeout(function () {
@@ -185,7 +176,7 @@ var _default =
                 title: '登录成功',
                 icon: 'none' });
 
-            }, 500);
+            }, 50);
 
           } else {
             uni.showToast({
@@ -195,14 +186,10 @@ var _default =
           }
         } });
 
-    },
+    }
     // 下面是可以封装起来引入的部分
     // 判断是否是正确的手机号码
-    isMobile: function isMobile(str) {
-      var reg = /^1\d{10}$/;
-      return reg.test(str);
-    } },
-
+  },
   // 去往注册页
   goRegister: function goRegister() {
     uni.redirectTo({

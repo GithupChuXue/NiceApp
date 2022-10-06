@@ -132,7 +132,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
 //
 //
 //
@@ -152,11 +154,48 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var _default =
 {
   data: function data() {
-    return {};
-
+    return {
+      title: '',
+      content: '',
+      imagePaths: '' };
 
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    // // 上传图片
+    getImage: function getImage() {var _this = this;
+      console.log("拿取图片");
+      uni.chooseImage({
+        count: 3,
+        sizeType: "original",
+        success: function success(res) {
+          _this.imagePaths = res.tempFilePaths;
+          console.log(res); //取到图像
+          console.log('成功取出图像');
+        } });
+
+    },
+    // 发布内容
+    uploadeShare: function uploadeShare() {
+      console.log("上传内容");
+      uni.uploadFile({
+        url: 'http://127.0.0.1:8888/share/upload', // 接口地址
+        file: this.imagePaths[0], //选取图像序列中的第一张，后端是一张一张传
+        name: this.title, // name：必须为img
+        fileType: 'image', //类型为image
+        header: {
+          'Authorization': "".concat(this.$store.token) },
+
+        method: "POST",
+        formData: {
+          'title': this.title, //内容的文字标题
+          'text': this.content // 分享的文字内容
+        },
+        success: function success(res) {
+          console.log(res.data); //res为发布成功的提示
+        } });
+
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

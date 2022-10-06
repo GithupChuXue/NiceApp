@@ -103,6 +103,15 @@ try {
     uniListItem: function() {
       return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 246))
     },
+    uniPopup: function() {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 226))
+    },
+    uniPopupDialog: function() {
+      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue */ 254))
+    },
+    uniPopupShare: function() {
+      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-share/uni-popup-share */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-share/uni-popup-share")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-share/uni-popup-share.vue */ 266))
+    },
     uniLoadMore: function() {
       return __webpack_require__.e(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */ "uni_modules/uni-load-more/components/uni-load-more/uni-load-more").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 209))
     }
@@ -161,7 +170,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniList = function uniList() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 238));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniListItem = function uniListItem() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 246));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniLoadMore = function uniLoadMore() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */ "uni_modules/uni-load-more/components/uni-load-more/uni-load-more").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 209));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniPopup = function uniPopup() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 226));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniPopupDialog = function uniPopupDialog() {Promise.all(/*! require.ensure | uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog")]).then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue */ 254));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniPopupShare = function uniPopupShare() {Promise.all(/*! require.ensure | uni_modules/uni-popup/components/uni-popup-share/uni-popup-share */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-share/uni-popup-share")]).then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-popup/components/uni-popup-share/uni-popup-share.vue */ 266));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -218,53 +227,93 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _read = _interopRequireDefault(__webpack_require__(/*! ../../services/read.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var uniList = function uniList() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 238));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniListItem = function uniListItem() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 246));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniLoadMore = function uniLoadMore() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */ "uni_modules/uni-load-more/components/uni-load-more/uni-load-more").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 209));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {
 
   components: {
     uniList: uniList,
     uniListItem: uniListItem,
-    uniLoadMore: uniLoadMore },
+    uniLoadMore: uniLoadMore,
+    uniPopup: uniPopup,
+    uniPopupDialog: uniPopupDialog,
+    uniPopupShare: uniPopupShare },
 
+  onLoad: function onLoad() {
+    this.$store.dispatch("getAllinInfo");
+  },
+  onShow: function onShow() {
+    this.$store.dispatch("getAllinInfo");
+    console.log(this.$store.state);
+  },
+
+  mounted: function mounted() {
+    this.$store.dispatch("getUserInfo");
+    this.$store.dispatch("getAllinInfo");
+  },
 
   data: function data() {
     return {
-      content: _read.default.read_local("../static/data_test/data_local.json"),
       status: "more",
       contentText: {
         contentdown: "更多精彩",
         contentrefesh: "加载中",
-        contentnomore: "等待更多精彩内容" } };
+        contentnomore: "等待更多精彩内容" },
 
+      token: uni.getStorageSync("token") };
 
   },
 
-  methods: {},
+  methods: {
+    ThumbsUp: function ThumbsUp(id) {
+      this.$refs.popup_thumbsup[id].open();
+    },
+    Collect: function Collect(id) {
+      this.$refs.popup_collect[id].open();
+    },
+    Comment: function Comment(id) {
+      this.$refs.inputDialog[id].open();
+    },
+    confirm: function confirm(value) {
+      console.log(value);
+    },
+    Share: function Share(id) {
+      this.$refs.share[id].open();
+    } },
 
+
+  computed: {
+    list: function list() {
+      return this.$store.state.List;
+    } },
 
 
   //下拉刷新回调函数
   onPullDownRefresh: function onPullDownRefresh() {
-    console.log("上拉刷新");
-    this.content = _read.default.read_local("../static/data_test/data_local.json");
-    console.log("上拉刷新已完成");
+    this.$store.dispatch("getAllinInfo");
   },
 
   //上拉加载回调函数
   onReachBottom: function onReachBottom() {
     console.log("上拉加载");
-    var temp = _read.default.read_local("../static/data_test/data_local.json");
-    if (temp) {
-      this.status = "loading";
-      this.content = this.content.concat(temp);
-    } else
-    {
-      this.status = "noMore";
-      console.log("没有新内容了");
-    }
-    console.log("上拉加载已完成");
   } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

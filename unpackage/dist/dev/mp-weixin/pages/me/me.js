@@ -95,6 +95,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uniPopup: function() {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 226))
+    },
+    uniPopupDialog: function() {
+      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue */ 254))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -132,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Nav = function Nav() {__webpack_require__.e(/*! require.ensure | components/nav/nav */ "components/nav/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav/nav.vue */ 225));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -160,48 +186,81 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 287);var Nav = function Nav() {__webpack_require__.e(/*! require.ensure | components/nav/nav */ "components/nav/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav/nav.vue */ 225));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniPopup = function uniPopup() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 226));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniPopupDialog = function uniPopupDialog() {Promise.all(/*! require.ensure | uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog")]).then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue */ 254));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
 {
   components: {
-    Nav: Nav },
+    Nav: Nav,
+    uniPopup: uniPopup,
+    uniPopupDialog: uniPopupDialog },
 
   data: function data() {
     return {
-      userinfo: {
-        nickname: "张三",
-        username: "11223343",
-        signature: "今天真是美好的一天" },
-
       // 页面互动的距离
-      scrollTop: 0 };
+      scrollTop: 0,
+      token: uni.getStorageSync("token") };
 
+  },
+  onShow: function onShow() {
+    this.$store.dispatch("getUserInfo");
+    console.log(this.$store.state.userInfo);
   },
   methods: {
     // 退出登录
     logout: function logout() {
       var token = uni.removeStorageSync("token");
       console.log(token);
+    },
+    login: function login() {
+      console.log("me页 去往登录页");
+      uni.navigateTo({
+        url: "/pages/login/login" });
+
+    },
+    open: function open() {
+      this.$refs.popup.open();
+    },
+    /**
+        * 点击取消按钮触发
+        * @param {Object} done
+        */
+    close: function close() {
+      this.$refs.popup.close();
+    },
+    /**
+        * 点击确认按钮触发
+        * @param {Object} done
+        * @param {Object} value
+        */
+    confirm: function confirm(newPassword) {
+      this.$store.dispatch("changPassword", newPassword);
+      console.log("派发了一个action", newPassword);
+    } },
+
+  computed: {
+    userInfo: function userInfo() {
+      this.$store.state.userInfo;
     } },
 
   onPageScroll: function onPageScroll(e) {//nvue暂不支持滚动监听，可用bindingx代替
     this.scrollTop = e.scrollTop;
   },
-  onReachBottom: function onReachBottom(e) {
-    uni.request({
-      url: "http://127.0.0.1:8888/my/userinfo",
-      method: "GET",
-      header: {
-        'Authorization': "".concat(uni.getStorageSync("token")) },
-
-      success: function success(res) {
-        if (res.data.status === 200) {
-          console.log(res);
-        }
-      } });
-
-  } };exports.default = _default;
+  onReachBottom: function onReachBottom(e) {} };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

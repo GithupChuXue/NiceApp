@@ -218,6 +218,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
 var _read = _interopRequireDefault(__webpack_require__(/*! ../../services/read.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var uniList = function uniList() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 238));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniListItem = function uniListItem() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 246));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniLoadMore = function uniLoadMore() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */ "uni_modules/uni-load-more/components/uni-load-more/uni-load-more").then((function () {return resolve(__webpack_require__(/*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 209));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
@@ -229,42 +230,26 @@ var _read = _interopRequireDefault(__webpack_require__(/*! ../../services/read.j
 
 
   data: function data() {
-    return {
-      content: _read.default.read_local("../static/data_test/data_local.json"),
-      status: "more",
-      contentText: {
-        contentdown: "更多精彩",
-        contentrefesh: "加载中",
-        contentnomore: "等待更多精彩内容" } };
-
-
+    return {};
   },
 
-  methods: {},
+  methods: {
+    // 通过
+  },
+  computed: {},
 
-
-
+  onShow: function onShow() {
+    console.log("页面出现");
+    this.$store.dispatch("getConllectList");
+    this.$store.dispatch("getConllectInfo");
+  },
   //下拉刷新回调函数
   onPullDownRefresh: function onPullDownRefresh() {
     console.log("上拉刷新");
-    this.content = _read.default.read_local("../static/data_test/data_local.json");
-    console.log("上拉刷新已完成");
   },
 
   //上拉加载回调函数
-  onReachBottom: function onReachBottom() {
-    console.log("上拉加载");
-    var temp = _read.default.read_local("../static/data_test/data_local.json");
-    if (temp) {
-      this.status = "loading";
-      this.content = this.content.concat(temp);
-    } else
-    {
-      this.status = "noMore";
-      console.log("没有新内容了");
-    }
-    console.log("上拉加载已完成");
-  } };exports.default = _default;
+  onReachBottom: function onReachBottom() {} };exports.default = _default;
 
 /***/ }),
 

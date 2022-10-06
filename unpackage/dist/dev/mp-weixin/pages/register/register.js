@@ -185,7 +185,6 @@ var _default =
       password: '', //密码
       showPassword: true, //是否显示密码
       showClearIcon: false, //是否显示清除按钮
-      type: 2, //登录的状态 - - - 1是验证码登录、2是密码登录
       token: '' };
 
   },
