@@ -16,3 +16,10 @@ exports.id_share_schema = {
       id,
     },
 }
+
+// 验证规则对象 - 根据 Id 读取内容
+exports.search_share_schema = {
+    params: {
+      search: string,
+    },
+}
