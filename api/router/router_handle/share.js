@@ -130,6 +130,24 @@ exports.delete_share_id = (req, res) => {
     })
 }
 
+// 搜索包含指定字段的内容
+// /share/search/:search
+exports.search_share = (req, res) => {
+    const str = '\'%' + req.params.search + '%\''
+    console.log(str)
+    const sql = 'select * from shareinfo where title like '+ str +' or text like ' + str
+    console.log(sql)
+    db.query(sql, (err, results) => {
+        if (err) return res.cc(err, 400)
+        console.log(results)
+        res.send({
+            status: 200,
+            message: `成功搜索到包含字段${req.params.search}的内容`,
+            data: results,
+        })
+    })
+}
+
 
 /* exports.share_upload_img = (req, res) => {
     if (req.file === undefined) return res.cc('file wrong')

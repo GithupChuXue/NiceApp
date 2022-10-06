@@ -6,7 +6,7 @@ const shareRouterHandle = require('./router_handle/share')
 // 表单验证中间件
 const expresssJoi = require('@escook/express-joi')
 // 表单验证规则对象
-const { share_upload_schema, id_share_schema } = require('./schema/share')
+const { share_upload_schema, id_share_schema, search_share_schema } = require('./schema/share')
 
 // multer
 const multer=require('multer')
@@ -45,5 +45,9 @@ router.get('/collect/:id', expressJoi(id_share_schema), shareRouterHandle.collec
 // 删除目标内容
 // /share/delete/:id
 router.get('/delete/:id', expressJoi(id_share_schema), shareRouterHandle.delete_share_id)
+
+// 搜索内容
+// /share/search/:search
+router.get('/search/:search', expressJoi(search_share_schema), shareRouterHandle.search_share)
 
 module.exports = router
