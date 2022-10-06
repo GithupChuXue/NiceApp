@@ -27,32 +27,32 @@
 							</view>
 							<view class="uni-thumb">
 								<!-- 当前判断长度只为简单判断类型，实际业务中，根据逻辑直接渲染即可 -->
-								<image :src=`@/api/images/${item.img}` mode='aspectFill'></image>
+								<image src="../../images/dog.jpg mode='aspectFill'></image>
 							</view>
 						</view>
 					</template>
 					<!-- 同步footer插槽定义列表底部的显示效果 -->
 					<template v-slot:footer>
-						<view class="uni-footer">
-							<text class="uni-footer-text" @click="ThumbsUp(item.shareid)">点赞</text>
-							<uni-popup ref="popup_thumbsup" type="center">点赞！</uni-popup>
+						<view class=" uni-footer">
+									<text class="uni-footer-text" @click="ThumbsUp(item.shareid)">点赞</text>
+									<uni-popup ref="popup_thumbsup" type="center">点赞！</uni-popup>
 
-							<text class="uni-footer-text" @click="Collect(item.shareid)">收藏</text>
-							<uni-popup ref="popup_collect" type="center">收藏！</uni-popup>
+									<text class="uni-footer-text" @click="Collect(item.shareid)">收藏</text>
+									<uni-popup ref="popup_collect" type="center">收藏！</uni-popup>
 
-							<text class="uni-footer-text" @click="Comment(item.shareid)">评论</text>
-							<uni-popup ref="inputDialog" type="dialog">
-								<uni-popup-dialog type="center" mode="input" @confirm="confirm">
-								</uni-popup-dialog>
-							</uni-popup>
+									<text class="uni-footer-text" @click="Comment(item.shareid)">评论</text>
+									<uni-popup ref="inputDialog" type="dialog">
+										<uni-popup-dialog type="center" mode="input" @confirm="confirm">
+										</uni-popup-dialog>
+									</uni-popup>
 
-							<text class="uni-footer-text" @click="Share(item.shareid)">分享</text>
-							<uni-popup ref="share" type="share" safeArea backgroundColor="#fff">
-								<uni-popup-share title="分享到" @select="select">
-								</uni-popup-share>
-							</uni-popup>
+									<text class="uni-footer-text" @click="Share(item.shareid)">分享</text>
+									<uni-popup ref="share" type="share" safeArea backgroundColor="#fff">
+										<uni-popup-share title="分享到" @select="select">
+										</uni-popup-share>
+									</uni-popup>
 
-						</view>
+							</view>
 					</template>
 				</uni-list-item>
 			</uni-list>
