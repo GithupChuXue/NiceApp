@@ -7,7 +7,9 @@
     "pages/post/post",
     "pages/detail/detail",
     "pages/register/register",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/result/result",
+    "pages/change_UserInfo/change_UserInfo"
   ],
   "subPackages": [],
   "window": {
@@ -19,7 +21,7 @@
     "enablePullDownRefresh": true
   },
   "tabBar": {
-    "borderStyle": "#D9D9D9",
+    "borderStyle": "white",
     "backgroundColor": "#FFFFFF",
     "list": [
       {

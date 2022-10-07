@@ -1,39 +1,39 @@
 {
-  "description": "项目配置文件。",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
-  "setting": {
-    "urlCheck": false,
-    "es6": false,
-    "postcss": false,
-    "minified": false,
-    "newFeature": true,
-    "bigPackageSizeSupport": true,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    }
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.26.1",
-  "appid": "wx51af0a76f953f75a",
-  "projectname": "niceApp",
-  "condition": {
-    "miniprogram": {
-      "list": [
-        {
-          "name": "详情",
-          "pathName": "pages/detail/detail",
-          "query": "id=80"
+    "description": "项目配置文件。",
+    "packOptions": {
+        "ignore": [],
+        "include": []
+    },
+    "setting": {
+        "urlCheck": false,
+        "es6": false,
+        "postcss": false,
+        "minified": false,
+        "newFeature": true,
+        "bigPackageSizeSupport": true,
+        "babelSetting": {
+            "ignore": [],
+            "disablePlugins": [],
+            "outputPath": ""
         }
-      ]
+    },
+    "compileType": "miniprogram",
+    "libVersion": "2.26.1",
+    "appid": "wx51af0a76f953f75a",
+    "projectname": "niceApp",
+    "condition": {
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "详情",
+                    "pathName": "pages/detail/detail",
+                    "query": "id=80"
+                }
+            ]
+        }
+    },
+    "editorSetting": {
+        "tabIndent": "insertSpaces",
+        "tabSize": 4
     }
-  },
-  "editorSetting": {
-    "tabIndent": "insertSpaces",
-    "tabSize": 2
-  }
 }
