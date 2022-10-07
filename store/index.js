@@ -133,7 +133,7 @@ const store = new Vuex.Store({
 		// 更新用户信息
 
 		updateUserInfo() {
-			uni.requset({
+			uni.request({
 				url: "http://127.0.0.1:8888/my/userinfo",
 				method: "POST",
 				header: {
@@ -151,7 +151,7 @@ const store = new Vuex.Store({
 		getStar({
 			commit
 		}, shareid) {
-			uni.requset({
+			uni.request({
 				url: `http://127.0.0.1:8888/share/collect/${shareid}`, // id是内容的shareid
 				methods: "GET",
 				header: {
@@ -162,7 +162,7 @@ const store = new Vuex.Store({
 		},
 		// 获取发布信息
 		getPublishInfo() {
-			uni.requset({
+			uni.request({
 				url: "http://127.0.0.1:8888/my/myshare",
 				methods: "GET",
 				header: {
@@ -175,7 +175,7 @@ const store = new Vuex.Store({
 		PublishComments({
 			commit
 		}, config) {
-			uni.requset({
+			uni.request({
 				url: "http://127.0.0.1:8888/comment/upload",
 				methods: "POST",
 				header: {
@@ -193,7 +193,7 @@ const store = new Vuex.Store({
 		getCommentsInfo({
 			commit
 		}, id) {
-			uni.requset({
+			uni.request({
 				url: `http://127.0.0.1:8888/comment/show/${id}`, // id为评论的id，可直接进行拼接（替换:id）
 				methods: "GET",
 				header: {

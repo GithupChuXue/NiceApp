@@ -112,7 +112,7 @@
 			Collect(id) {
 				this.$refs.popup_collect[id].open();
 				// 派发收藏的action
-				this.$store.dispatch("getStar", shareid)
+				this.$store.dispatch("getStar", id)
 			},
 			Comment(id) {
 				this.$refs.inputDialog[id].open()
