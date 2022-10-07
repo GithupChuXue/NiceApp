@@ -96,8 +96,8 @@
 				text-align: center;
 
 				.picture {
-					width: 300rpx;
-					height: 300rpx;
+					width: 100rpx;
+					height: 100rpx;
 					margin: 0 auto;
 					border: #777 1px solid;
 					box-shadow: 0 0 8px #999;
@@ -113,7 +113,7 @@
 				margin-top: 40rpx;
 				margin-left: 50rpx;
 				width: 85%;
-				height: 400rpx;
+				height: 200rpx;
 				text-align: center;
 				background-color: #FFF8DC;
 			}
