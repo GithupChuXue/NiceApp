@@ -20,7 +20,7 @@ const db = mysql.createPool({
     host: '127.0.0.1',
     user: 'root',
     password: 'xzk123',
-    database: 'my_db_01'
-})
- */
+    database: 'niceapp'
+}) */
+
 module.exports = db
