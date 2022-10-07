@@ -1,14 +1,6 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-		    "path" : "pages/change_UserInfo/change_UserInfo",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "修改个人信息",
-		        "enablePullDownRefresh": false
-		    }
-		},
-		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "nice app"
@@ -38,7 +30,7 @@
 			"path": "pages/post/post",
 			"style": {
 				"navigationBarTitleText": "发布",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": true
 			}
 
 		}, {
@@ -68,8 +60,15 @@
 			"style": {
 				"navigationBarTitleText": "搜索结果"
 			}
+		},
+		{
+		    "path" : "pages/change_UserInfo/change_UserInfo",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "修改个人信息",
+		        "enablePullDownRefresh": false
+		    }
 		}
-		
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
