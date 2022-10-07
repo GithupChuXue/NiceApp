@@ -125,7 +125,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.__map(_vm.conllectInfo, function(item, index) {
+  var l0 = _vm.__map(_vm.conllectList, function(item, index) {
     var $orig = _vm.__get_orig(item)
 
     var m0 = __webpack_require__(288)("./" + item.img)
@@ -244,27 +244,25 @@ var _read = _interopRequireDefault(__webpack_require__(/*! ../../services/read.j
 
 
   data: function data() {
-    return {
-      content: "" };
-
+    return {};
   },
 
   methods: {
     // 通过
   },
   computed: {
-    conllectInfo: function conllectInfo() {
-      return this.$store.state.conllectInfo;
+    conllectList: function conllectList() {
+      return this.$store.state.conllectList;
     } },
 
   mounted: function mounted() {
     this.$store.dispatch("getConllectList");
-    this.$store.dispatch("getConllectInfo");
+    // this.$store.dispatch("getConllectInfo");
   },
   onShow: function onShow() {
 
     this.$store.dispatch("getConllectList");
-    this.$store.dispatch("getConllectInfo");
+    // this.$store.dispatch("getConllectInfo");
   },
   //下拉刷新回调函数
   // onPullDownRefresh() {

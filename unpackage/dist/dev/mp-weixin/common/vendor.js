@@ -20042,7 +20042,7 @@ var store = new _vuex.default.Store({
         url: "http://127.0.0.1:8888/my/mycollection",
         methods: "GET",
         header: {
-          'content-type': "application/x-www-form-urlencoded",
+          //'content-type': "application/x-www-form-urlencoded",
           'Authorization': "".concat(this.state.token) },
 
         success: function success(res) {
@@ -20052,32 +20052,23 @@ var store = new _vuex.default.Store({
         } });
 
     },
-    // 获取全部收藏的内容
-    getConllectInfo: function getConllectInfo(_ref4)
+    // 获取某一个指定的内容
+    getConllectInfo: function getConllectInfo(_ref4,
 
-    {var _this = this;var commit = _ref4.commit;
-      var conllectInfo = [];
+    config) {var commit = _ref4.commit;
+      uni.request({
+        url: "http://127.0.0.1:8888/share/show/".concat(config.id),
+        methods: "GET",
+        header: {
+          'content-type': "application/x-www-form-urlencoded",
+          'Authorization': "".concat(this.state.token) },
 
-      this.state.conllectList.forEach(function (item) {
-        if (item.shareid) {
-          uni.request({
-            url: "http://127.0.0.1:8888/share/show/".concat(item.shareid),
-            methods: "GET",
-            header: {
-              'content-type': "application/x-www-form-urlencoded",
-              'Authorization': "".concat(_this.state.token) },
+        success: function success(res) {
+          if (res.data.status === 200) {
+            commit("GetConllecInfo", conllectInfo);
+          }
+        } });
 
-            success: function success(res) {
-              if (res.data.status === 200) {
-                conllectInfo.push(res.data.data);
-                // console.log(conllectInfo)
-              }
-            } });
-
-        }
-
-      });
-      commit("GetConllecInfo", conllectInfo);
     },
     //更改密码
     changPassword: function changPassword(_ref5,

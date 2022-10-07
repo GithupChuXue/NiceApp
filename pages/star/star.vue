@@ -14,7 +14,7 @@
 		<view class="show">
 			<uni-list>
 				<!-- to 属性携带参数跳转详情页面，当前只为参考 -->
-				<uni-list-item direction="column" v-for="(item,index) in conllectInfo" :key="item.shareid"
+				<uni-list-item direction="column" v-for="(item,index) in conllectList" :key="item.shareid"
 					:to="'/pages/detail/detail?id='+item.shareid">
 					<!-- 通过header插槽定义列表的标题 -->
 					<template v-slot:header>
@@ -65,27 +65,25 @@
 		},
 
 		data() {
-			return {
-				content: ""
-			}
+			return {}
 		},
 
 		methods: {
 			// 通过
 		},
 		computed: {
-			conllectInfo() {
-				return this.$store.state.conllectInfo;
+			conllectList() {
+				return this.$store.state.conllectList;
 			}
 		},
 		mounted() {
 			this.$store.dispatch("getConllectList");
-			this.$store.dispatch("getConllectInfo");
+			// this.$store.dispatch("getConllectInfo");
 		},
 		onShow() {
 
 			this.$store.dispatch("getConllectList");
-			this.$store.dispatch("getConllectInfo");
+			// this.$store.dispatch("getConllectInfo");
 		},
 		//下拉刷新回调函数
 		// onPullDownRefresh() {

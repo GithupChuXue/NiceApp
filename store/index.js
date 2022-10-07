@@ -88,32 +88,23 @@ const store = new Vuex.Store({
 				}
 			})
 		},
-		// 获取全部收藏的内容
+		// 获取某一个指定的内容
 		getConllectInfo({
 			commit
-		}) {
-			let conllectInfo = [];
-
-			this.state.conllectList.forEach((item) => {
-				if (item.shareid) {
-					uni.request({
-						url: `http://127.0.0.1:8888/share/show/${item.shareid}`,
-						methods: "GET",
-						header: {
-							'content-type': "application/x-www-form-urlencoded",
-							'Authorization': `${this.state.token}`
-						},
-						success(res) {
-							if (res.data.status === 200) {
-								conllectInfo.push(res.data.data);
-								// console.log(conllectInfo)
-							}
-						}
-					})
+		}, config) {
+			uni.request({
+				url: `http://127.0.0.1:8888/share/show/${config.id}`,
+				methods: "GET",
+				header: {
+					'content-type': "application/x-www-form-urlencoded",
+					'Authorization': `${this.state.token}`
+				},
+				success(res) {
+					if (res.data.status === 200) {
+						commit("GetConllecInfo", conllectInfo)
+					}
 				}
-
-			});
-			commit("GetConllecInfo", conllectInfo)
+			})
 		},
 		//更改密码
 		changPassword({
