@@ -18,7 +18,7 @@
 					:to="'/pages/detail/detail?id='+item.shareid">
 					<!-- 通过header插槽定义列表的标题 -->
 					<template v-slot:header>
-						<view class="uni-note">{{item.publisher}} {{item.time}}</view>
+						<view class="uni-note">{{item.publisher}} {{item.time |myFilter}}</view>
 					</template>
 					<!-- 通过body插槽定义列表内容显示 -->
 					<template v-slot:body>

@@ -23,7 +23,21 @@ wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;_vue.default.config.p
 // 注册uView
 _vue.default.use(_uviewUi.default); // 引入vuex仓库
 // 绑定到全局
-_vue.default.prototype.$password = _store.default;_App.default.mpType = 'app';var app = new _vue.default(_objectSpread(_objectSpread({}, _App.default), {}, {
+_vue.default.prototype.$password = _store.default; // 时间
+_vue.default.filter("myFilter", function (originVal) {//dateFormat为自定义函数名
+  var dt = new Date(originVal);var y = dt.getFullYear();
+  var m = (dt.getMonth() + 1 + "").padStart(2, "0");
+  var d = (dt.getDate() + "").padStart(2, "0");
+  var hh = (dt.getHours() + "").padStart(2, "0");
+  var mm = (dt.getMinutes() + "").padStart(2, "0");
+  var ss = (dt.getSeconds() + "").padStart(2, "0");
+  // 时间格式年月日、时分秒
+  return "".concat(y, "-").concat(m, "-").concat(d, " ").concat(hh, ":").concat(mm, ":").concat(ss);
+});
+
+_App.default.mpType = 'app';
+var app = new _vue.default(_objectSpread(_objectSpread({},
+_App.default), {}, {
   store: _store.default }));
 
 createApp(app).$mount();
@@ -102,10 +116,10 @@ var _read = _interopRequireDefault(__webpack_require__(/*! ./services/read.js */
 
 {
   onLaunch: function onLaunch() {
-    this.$store.dispatch("getUserInfo");
-    this.$store.dispatch("getAllinInfo");
-    this.$store.dispatch("getConllectList");
-    this.$store.dispatch("getConllectInfo");
+    // this.$store.dispatch("getUserInfo")
+    // this.$store.dispatch("getAllinInfo")
+    // this.$store.dispatch("getConllectList")
+    // this.$store.dispatch("getConllectInfo")
 
   },
   onShow: function onShow() {

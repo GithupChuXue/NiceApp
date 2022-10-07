@@ -32,7 +32,7 @@ exports.share_upload = (req, res) => {
 // /share/show
 // 读取所有发布的内容
 exports.get_all_share = (req, res) => {
-    const sql = 'select * from shareinfo where is_delete=0'
+    const sql = 'select * from shareinfo where is_delete=0 order by shareid desc'
     db.query(sql, (err, results) => {
         if(err) return res.cc(err, 400)
         res.send({

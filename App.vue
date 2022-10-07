@@ -3,10 +3,10 @@
 
 	export default {
 		onLaunch: function() {
-			this.$store.dispatch("getUserInfo")
-			this.$store.dispatch("getAllinInfo")
-			this.$store.dispatch("getConllectList")
-			this.$store.dispatch("getConllectInfo")
+			// this.$store.dispatch("getUserInfo")
+			// this.$store.dispatch("getAllinInfo")
+			// this.$store.dispatch("getConllectList")
+			// this.$store.dispatch("getConllectInfo")
 
 		},
 		onShow: function() {
