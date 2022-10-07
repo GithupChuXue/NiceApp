@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const path = require('path')
 
 // 路由处理函数
 const shareRouterHandle = require('./router_handle/share')
@@ -13,9 +14,10 @@ const multer=require('multer')
 const expressJoi = require('@escook/express-joi')
 const storage = multer.diskStorage({
     // 保存路径
-    destination: function (req, file, callback) { 
-        callback(null, './api/image')
-    }, 
+    destination: path.join(__dirname, '.././image'),
+    // destination: function (req, file, callback) { 
+    //     callback(null, './image')
+    // }, 
     // 保存文件名
     filename: function (req, file, callback) {
         callback(null, Date.now() + "_" + file.originalname)

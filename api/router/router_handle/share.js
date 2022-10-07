@@ -6,7 +6,8 @@ const db = require('../../db/index')
 // const jwt = require('jsonwebtoken')
 // // 导入全局的配置文件
 // const config = require('../../config')
-// // 导入silly-date获取时间
+
+// 导入silly-date获取时间
 const sd = require('silly-datetime')
 
 // /share/upload
@@ -14,11 +15,13 @@ const sd = require('silly-datetime')
 exports.share_upload = (req, res) => {
     const sql = 'insert into shareinfo set ?'
     const time = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss')
-    // console.log(req.body)
-    // console.log(req.file)
+    
+    console.log(req.body)
+    console.log(req.file)
     
     imgName = req.file.filename
-    
+    console.log(imgName)
+
     db.query(sql, {publisher: req.user.username, title: req.body.title, text: req.body.text, time: time, img: imgName}, (err, results) => {
         if (err) return res.cc(err, 400)
         if (results.affectedRows !== 1) return res.cc('发布内容失败，请稍后再试！', 404)
