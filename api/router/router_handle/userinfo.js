@@ -47,6 +47,8 @@ exports.getUserCollection = (req, res) => {
             data: results
         })
 
+        
+
         // const collectStr = results[0].collection
         // let dataStrArr=collectStr.split(",");  //分割成字符串数组
         // const sql = 'select * from shareinfo where id in (' + dataStrArr +')'
