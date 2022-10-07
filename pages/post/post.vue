@@ -53,7 +53,8 @@
 			uploadeShare() {
 				console.log("上传内容");
 				console.log(this.$store.state.token)
-				console.log(this.imagePaths[0])
+				console.log('路径',this.imagePaths[0])
+				console.log('图像',this.imageFile[0])
 				uni.uploadFile({
 					url: 'http://127.0.0.1:8888/share/upload', // 接口地址
 					file: this.imageFile[0], //选取图像序列中的第一张，后端是一张一张传

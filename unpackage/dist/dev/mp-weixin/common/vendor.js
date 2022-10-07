@@ -1464,7 +1464,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -8556,7 +8556,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8577,14 +8577,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8670,7 +8670,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -19902,23 +19902,76 @@ module.exports = index_cjs;
   !*** E:/aliproject/NiceApp/api/image sync ^\.\/.*$ ***!
   \*****************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyContext(req) {
-	var e = new Error("Cannot find module '" + req + "'");
-	e.code = 'MODULE_NOT_FOUND';
-	throw e;
+var map = {
+	"./1665138099048_12.png": 144,
+	"./1665138150429_12.png": 145,
+	"./1665138899118_preview.jpg": 146,
+	"./1665145082667_preview.jpg": 147
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
 }
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 143;
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 143;
 
 /***/ }),
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
+/* 144 */
+/*!************************************************************!*\
+  !*** E:/aliproject/NiceApp/api/image/1665138099048_12.png ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1665138099048_12.png";
+
+/***/ }),
+/* 145 */
+/*!************************************************************!*\
+  !*** E:/aliproject/NiceApp/api/image/1665138150429_12.png ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1665138150429_12.png";
+
+/***/ }),
+/* 146 */
+/*!*****************************************************************!*\
+  !*** E:/aliproject/NiceApp/api/image/1665138899118_preview.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1665138899118_preview.jpg";
+
+/***/ }),
+/* 147 */
+/*!*****************************************************************!*\
+  !*** E:/aliproject/NiceApp/api/image/1665145082667_preview.jpg ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1665145082667_preview.jpg";
+
+/***/ }),
 /* 148 */,
 /* 149 */,
 /* 150 */,
@@ -20021,11 +20074,7 @@ webpackEmptyContext.id = 143;
 /* 247 */,
 /* 248 */,
 /* 249 */,
-/* 250 */,
-/* 251 */,
-/* 252 */,
-/* 253 */,
-/* 254 */
+/* 250 */
 /*!*********************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-popup/components/uni-popup/popup.js ***!
   \*********************************************************************************/
@@ -20059,7 +20108,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     } } };exports.default = _default;
 
 /***/ }),
-/* 255 */
+/* 251 */
 /*!**************************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
   \**************************************************************************************/
@@ -20067,16 +20116,16 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 256));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 257));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 258));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 252));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 253));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 254));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
   en: _en.default,
   'zh-Hans': _zhHans.default,
   'zh-Hant': _zhHant.default };exports.default = _default;
 
 /***/ }),
-/* 256 */
+/* 252 */
 /*!*************************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
   \*************************************************************************************/
@@ -20086,7 +20135,7 @@ var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 2
 module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\"ok\",\"uni-popup.placeholder\":\"pleace enter\",\"uni-popup.title\":\"Hint\",\"uni-popup.shareTitle\":\"Share to\"}");
 
 /***/ }),
-/* 257 */
+/* 253 */
 /*!******************************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
   \******************************************************************************************/
@@ -20096,7 +20145,7 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\
 module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"确定\",\"uni-popup.placeholder\":\"请输入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
 
 /***/ }),
-/* 258 */
+/* 254 */
 /*!******************************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
   \******************************************************************************************/
@@ -20106,6 +20155,10 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"確定\",\"uni-popup.placeholder\":\"請輸入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
 
 /***/ }),
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
 /* 259 */,
 /* 260 */,
 /* 261 */,
@@ -20130,11 +20183,7 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 /* 280 */,
 /* 281 */,
 /* 282 */,
-/* 283 */,
-/* 284 */,
-/* 285 */,
-/* 286 */,
-/* 287 */
+/* 283 */
 /*!*********************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \*********************************************************************************/
@@ -21310,6 +21359,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     "unicode_decimal": 58929 }] };exports.default = _default;
 
 /***/ }),
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
 /* 288 */,
 /* 289 */,
 /* 290 */,
@@ -21320,11 +21373,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* 295 */,
 /* 296 */,
 /* 297 */,
-/* 298 */,
-/* 299 */,
-/* 300 */,
-/* 301 */,
-/* 302 */
+/* 298 */
 /*!*****************************************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
   \*****************************************************************************************************/
