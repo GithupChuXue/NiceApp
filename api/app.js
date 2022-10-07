@@ -2,7 +2,7 @@
 const express = require('express')
 const app = express()
 // 验证规则
-const Joi = require('@hapi/joi')
+const Joi = require('joi')
 const cors = require('cors')
 // 配置文件
 const config = require('./config')
