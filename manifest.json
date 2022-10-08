@@ -1,6 +1,6 @@
 {
     "name" : "niceApp",
-    "appid" : "__UNI__195A10F",
+    "appid" : "__UNI__9F21473",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -68,5 +68,12 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "2"
+    "vueVersion" : "2",
+    "h5" : {
+        "title" : "NiceAPP",
+        "router" : {
+            "mode" : "hash",
+            "base" : "./"
+        }
+    }
 }
