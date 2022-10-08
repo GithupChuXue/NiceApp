@@ -96,6 +96,40 @@ exports.updatePass = function (req, res) {
     })
 }
 
+// 获取消息
+// /my/mymessage
+exports.getUserMessage = (req, res) => {
+    const sql = 'select * from comment where shareid in (select shareid from shareinfo where publisher=? and is_delete=0) and is_delete=0'
+    db.query(sql, req.user.username, (err, results) => {
+        if (err) return res.cc(err, 400)
+        const commentdata = results
+        const sql = 'select * from userinfo where userid in (select userid from favor where shareid in (select shareid from shareinfo where publisher=? and is_delete=0) and disfavor=0)'
+        db.query(sql, req.user.username, (err, results) => {
+            if (err) return res.cc(err, 400)
+            const favordata = results
+            res.send({
+                status: 200,
+                message: '获取消息成功',
+                comment: commentdata,
+                favor: favordata,
+        
+            })
+        })
+    })
+}
+
+exports.getUserFavor = (req, res) => {
+    const sql = 'select * from shareinfo where shareid in (select shareid from favor where userid=? and disfavor=0) and is_delete=0'
+    db.query(sql, req.user.userid, (err, results) => {
+        if (err) return res.cc(err, 400)
+        res.send({
+            status: 200,
+            message: '获取我点赞的内容成功。',
+            data: results,
+        })
+    })
+}
+
 // // 更新用户头像
 // exports.update_avatar = (req, res) => {
 //     const sql = 'update userinfo set user_pic=? where id=?'

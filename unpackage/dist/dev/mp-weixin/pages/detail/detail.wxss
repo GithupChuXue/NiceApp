@@ -121,10 +121,10 @@
   color: #333;
   text-decoration: underline;
 }
-.index {
+.detail {
   vertical-align: middle;
 }
-.index .show {
+.detail .show {
   width: 100%;
   background-color: #c6c6c6;
 }

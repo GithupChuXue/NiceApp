@@ -70,7 +70,7 @@ exports.get_id_share = (req, res) => {
 // 收藏内容
 // /share/collect/:id
 exports.collect_id_share = (req, res) => {
-    console.log('开始')
+    console.log('收藏')
     const sql = 'select * from collect where userid=' + req.user.userid + ' and shareid=' + req.params.id
     console.log(sql)
     db.query(sql, (err, results) => {
@@ -137,9 +137,9 @@ exports.delete_share_id = (req, res) => {
 // /share/search/:search
 exports.search_share = (req, res) => {
     const str = '\'%' + req.params.search + '%\''
-    console.log(str)
+    // console.log(str)
     const sql = 'select * from shareinfo where title like '+ str +' or text like ' + str
-    console.log(sql)
+    // console.log(sql)
     db.query(sql, (err, results) => {
         if (err) return res.cc(err, 400)
         console.log(results)
@@ -148,6 +148,64 @@ exports.search_share = (req, res) => {
             message: `成功搜索到包含字段${req.params.search}的内容`,
             data: results,
         })
+    })
+}
+
+exports.favor_share_id_user = (req, res) => {
+    const sql = 'select * from userinfo where userid in (select userid from favor where shareid=?)'
+    db.query(sql, req.params.id, (err, results) => {
+        if (err) return res.cc(err, 400)
+        res.send({
+            status: 200,
+            message: '成功获取点赞用户信息。',
+            data: results,
+        })
+
+    })
+}
+
+
+// 点赞内容
+// /share/favor/:id
+exports.favor_share_id = (req, res) => {
+    console.log('点赞')
+    const sql = 'select * from favor where userid=' + req.user.userid + ' and shareid=' + req.params.id
+    console.log(sql)
+    db.query(sql, (err, results) => {
+        if(err) return res.cc(err, 400)
+        if(results.length !== 0) {
+            let num = 1
+            let tip = '取消点赞'
+            if(results[0].disfavor === 1) {
+                num = 0
+                tip = '点赞成功'
+            }
+            const sql = 'update favor set disfavor='+num+' where userid='+req.user.userid+' and shareid='+req.params.id
+            db.query(sql, (err, results) => {
+                if(err) return res.cc(err, 400)
+                if(results.affectedRows !== 1) return res.cc(err, 404)
+                return res.send({
+                    status: 200,
+                    message: tip,
+                })
+            })
+        } else {
+            // 没有记录，添加记录
+            const sql = 'select * from shareinfo where shareid=' + req.params.id
+            db.query(sql, (err, results) => {
+                if(err) return res.cc(err, 400)
+                if(results.length !== 1) return res.cc(err, 404)
+                const sql = 'insert into favor set ?'
+                db.query(sql, {userid: req.user.userid, shareid: Number(req.params.id)}, (err, results) => {
+                    if(err) return res.cc(err, 400)
+                    if(results.affectedRows !== 1) return res.cc('插入信息失败', 404) 
+                    return res.send({
+                        status: 200,
+                        message: `用户id:${req.user.userid}点赞内容id:${req.params.id}的内容成功`,
+                    })
+                })
+            })
+        }
     })
 }
 

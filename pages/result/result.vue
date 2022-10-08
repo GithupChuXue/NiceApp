@@ -5,10 +5,10 @@
 		<view class="show">
 			<uni-list>
 				<!-- to 属性携带参数跳转详情页面，当前只为参考 -->
-				<uni-list-item direction="column" v-for="(item,index) in resultsList" :key="item.shareid">
+				<uni-list-item direction="column" v-for="(item,index) in resultsList" :key="item.shareid" clickable @click="showDetail(item.shareid)">
 					<!-- 通过header插槽定义列表的标题 -->
 					<template v-slot:header>
-						<view class="uni-note">{{item.publisher}} {{item.time}}</view>
+						<view class="uni-note">{{item.publisher}} {{item.time |myFilter}}</view>
 					</template>
 					<!-- 通过body插槽定义列表内容显示 -->
 					<template v-slot:body>
@@ -25,19 +25,19 @@
 					<!-- 同步footer插槽定义列表底部的显示效果 -->
 					<template v-slot:footer>
 						<view class=" uni-footer">
-							<text class="uni-footer-text" @click="ThumbsUp(item.shareid, index)">点赞</text>
+							<text class="uni-footer-text" @click.stop="ThumbsUp(item.shareid, index)">点赞</text>
 							<uni-popup ref="popup_thumbsup" type="center">点赞！</uni-popup>
 
-							<text class="uni-footer-text" @click="Collect(item.shareid, index)">收藏</text>
+							<text class="uni-footer-text" @click.stop="Collect(item.shareid, index)">收藏</text>
 							<uni-popup ref="popup_collect" type="center">收藏！</uni-popup>
 
-							<text class="uni-footer-text" @click="Comment(item.shareid, index)">评论</text>
+							<text class="uni-footer-text" @click.stop="Comment(item.shareid, index)">评论</text>
 							<uni-popup ref="inputDialog" type="dialog">
 								<uni-popup-dialog type="center" mode="input" @confirm="confirm">
 								</uni-popup-dialog>
 							</uni-popup>
 
-							<text class="uni-footer-text" @click="Share(item.shareid, index)">分享</text>
+							<text class="uni-footer-text" @click.stop="Share(item.shareid, index)">分享</text>
 							<uni-popup ref="share" type="share" safeArea backgroundColor="#fff">
 								<uni-popup-share title="分享到" @select="select">
 								</uni-popup-share>
@@ -107,12 +107,16 @@
 			Share(id, index) {
 				this.$refs.share[index].open()
 			},
+			showDetail(id) {
+				uni.navigateTo({
+					url: `/pages/detail/detail?id=${id}`
+				})
+			},
 		},
 		
 		onLoad(option) {
 			console.log("接收到的对象为：");
 			console.log(option.keyword);
-			console.log("即将显示搜索结果：");
 			uni.request({
 				url: `http://127.0.0.1:8888/share/search/${option.keyword}`,
 				method: "GET",

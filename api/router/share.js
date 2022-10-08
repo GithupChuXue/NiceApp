@@ -12,6 +12,7 @@ const { share_upload_schema, id_share_schema, search_share_schema } = require('.
 // multer
 const multer=require('multer')
 const expressJoi = require('@escook/express-joi')
+const { route } = require('./user')
 const storage = multer.diskStorage({
     // 保存路径
     destination: path.join(__dirname, '.././image'),
@@ -43,6 +44,14 @@ router.get('/show/:id', expressJoi(id_share_schema), shareRouterHandle.get_id_sh
 // 收藏目标内容
 // /share/collect/:id
 router.get('/collect/:id', expressJoi(id_share_schema), shareRouterHandle.collect_id_share)
+
+// 点赞目标内容
+// /share/favor/:id
+router.get('/favor/:id', expressJoi(id_share_schema), shareRouterHandle.favor_share_id)
+
+// 获取内容的点赞信息
+// /share/favor/user/:id
+router.get('/favor/user/:id', expressJoi(id_share_schema), shareRouterHandle.favor_share_id_user)
 
 // 删除目标内容
 // /share/delete/:id

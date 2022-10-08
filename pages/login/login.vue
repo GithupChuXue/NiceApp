@@ -95,6 +95,12 @@
 							uni.switchTab({
 								url: "/pages/index/index",
 							})
+							//加载用户state
+							this.$store.dispatch("getUserInfo",);
+							this.$store.dispatch("getAllinInfo");
+							this.$store.dispatch("getcollectList");
+							this.$store.dispatch("getmyWorks");
+							this.$store.dispatch("getmyLikes");
 							setTimeout(() => {
 								uni.showToast({
 									title: '登录成功',

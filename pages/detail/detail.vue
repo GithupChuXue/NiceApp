@@ -1,36 +1,39 @@
 <template>
 	
-	<view class="index">
+	<view class="detail">
 		
-		<view class="post">
-			<view>
+		<!-- 内容展示区域 -->
+		<view class="content">
+				<view class="uni-note">{{content.publisher}} {{content.time |myFilter}}</view>
+			
+				<view class="imgShared">
+					<!-- <image :src="require(`../../api/image/${content.img}`)"></image> -->
+				</view>
 				
-			</view>
+				<view class="textShared">{{content.text}}</view>
 		</view>
-		
-		<!-- 预览展示区域 -->
-		<view class="show">
+			
+		<!-- 评论展示区域 -->
+		<view class="comments">
 			<uni-list>
 				<!-- to 属性携带参数跳转详情页面，当前只为参考 -->
-				<uni-list-item direction="column" v-for="item in content" :key="item.id" :to="'/pages/detail/detail?id='+item.id">
+				<uni-list-item direction="column" v-for="item in comments" :key="item.commentid">
 					<!-- 通过header插槽定义列表的标题 -->
 					<template v-slot:header>
-						<view class="uni-note">{{item.user}}    {{item.pub_time}}</view>
+						<view class="uni-note">{{item.userid}}</view>
 					</template>
 					<!-- 通过body插槽定义列表内容显示 -->
 					<template v-slot:body>
 						<view class="uni-list-box">
 							<view class="uni-content">
-								<view class="uni-title-sub uni-ellipsis-2">{{item.excerpt}}</view>
+								<view class="uni-title-sub uni-ellipsis-2">{{item.commenttext}}</view>
 							</view>	
 						</view>
 					</template>
 					<!-- 同步footer插槽定义列表底部的显示效果 -->
 					<template v-slot:footer>
 						<view class="uni-footer">
-							<text class="uni-footer-text">回复</text>
 							<text class="uni-footer-text">删除</text>
-							<text class="uni-footer-text">此人不再提醒</text>
 						</view>
 					</template>
 				</uni-list-item>
@@ -61,7 +64,8 @@
 		data() {
 			return {
 				id : 0,
-				content: read.read_local("../static/data_test/data_local_message.json"),
+				content: {},
+				comments: [],
 				status: "more",
 				contentText: {
 					contentdown: "更多精彩",
@@ -72,39 +76,54 @@
 		},
 		
 		methods: {
-			getDetailContent () {
-				const res = this.$myRequest ({
-					url: "../static/data_test/data_local_detail.json" + this.id
-				})
-				this.log(res)
-			}
+			ThumbsUp(id, index) {
+				this.$refs.popup_thumbsup[index].open()
+			},
+			// 
+			Collect(id, index) {
+				// 派发收藏的action
+				this.$store.dispatch("getStar", id)
+				this.$refs.popup_collect[index].open();
+			},
+			Comment(id, index) {
+				this.$refs.inputDialog[index].open()
+			},
+			confirm(value) {
+				console.log(value);
+			},
+			Share(id, index) {
+				this.$refs.share[index].open()
+			},
 		},
 		
-		onLoad (options) {
-			this.id = option.id
-			this.getDetailContent()
+		onLoad (option) {
+			this.id = option.id;
+			uni.request({
+				url: `http://127.0.0.1:8888/share/show/${this.id}`,
+				method: "GET",
+				header: {
+					'content-type': "application/x-www-form-urlencoded",
+					'Authorization':`${this.$store.state.token}`
+				},
+				success: (res) => {
+					if (res.data.status === 200) {
+						console.log("打开详情页:");
+						console.log(res.data);
+						this.content = res.data.shareData;
+						this.comments = res.data.commentData;
+					}
+				}
+			});
 		},
 		
 		//下拉刷新回调函数
 		onPullDownRefresh() {
 			console.log("上拉刷新");
-			this.content = read.read_local("../static/data_test/data_local_message.json");
-			console.log("上拉刷新已完成");
 		},
 		
 		//上拉加载回调函数
 		onReachBottom() {
 			console.log("上拉加载");
-			var temp = read.read_local("../static/data_test/data_local_message.json");
-			if (temp){
-				this.status = "loading";
-				this.content = this.content.concat(temp);
-			}
-			else{
-				this.status = "noMore";
-				console.log("没有新内容了");
-			}
-			console.log("上拉加载已完成");
 		}
 	}
 	
@@ -117,7 +136,7 @@
 	
 	//页面样式
 	
- 	.index {
+ 	.detail {
 		vertical-align: middle;
 		//预览区
 		.show {

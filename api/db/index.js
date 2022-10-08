@@ -9,18 +9,11 @@ const db = mysql.createPool({
     database: 'niceapp'
 })
 
-// const db = mysql.createPool({
-//     host: '47.92.120.204',
-//     user: 'root',
-//     password: '@Qwe123456',
-//     database: 'app'
-// })
-
 /* const db = mysql.createPool({
     host: '127.0.0.1',
     user: 'root',
     password: 'xzk123',
     database: 'niceapp'
-}) */
-
+})
+ */
 module.exports = db

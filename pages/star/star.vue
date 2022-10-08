@@ -35,19 +35,19 @@
 					<!-- 同步footer插槽定义列表底部的显示效果 -->
 					<template v-slot:footer>
 						<view class="uni-footer">
-							<text class="uni-footer-text" @click="ThumbsUp(item.shareid, index)">点赞</text>
+							<text class="uni-footer-text" @click.stop="ThumbsUp(item.shareid, index)">点赞</text>
 							<uni-popup ref="popup_thumbsup" type="center">点赞！</uni-popup>
 							
-							<text class="uni-footer-text" @click="Collect(item.shareid, index)">收藏</text>
+							<text class="uni-footer-text" @click.stop="Collect(item.shareid, index)">收藏</text>
 							<uni-popup ref="popup_collect" type="center">收藏！</uni-popup>
 							
-							<text class="uni-footer-text" @click="Comment(item.shareid, index)">评论</text>
+							<text class="uni-footer-text" @click.stop="Comment(item.shareid, index)">评论</text>
 							<uni-popup ref="inputDialog" type="dialog">
 								<uni-popup-dialog type="center" mode="input" @confirm="confirm">
 								</uni-popup-dialog>
 							</uni-popup>
 							
-							<text class="uni-footer-text" @click="Share(item.shareid, index)">分享</text>
+							<text class="uni-footer-text" @click.stop="Share(item.shareid, index)">分享</text>
 							<uni-popup ref="share" type="share" safeArea backgroundColor="#fff">
 								<uni-popup-share title="分享到" @select="select">
 								</uni-popup-share>
@@ -118,12 +118,10 @@
 		},
 		mounted() {
 			this.$store.dispatch("getcollectList");
-			// this.$store.dispatch("getcollectInfo");
 		},
 		onShow() {
 
 			this.$store.dispatch("getcollectList");
-			// this.$store.dispatch("getcollectInfo");
 		},
 		//下拉刷新回调函数
 		// onPullDownRefresh() {

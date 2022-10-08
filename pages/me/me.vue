@@ -12,10 +12,9 @@
 			</view>
 		</view>
 		<view class="user-content">
-			<view class="works">作品</view>
-			<view class="publish">点赞</view>
-			<view class="publish" @click="show_stars">收藏</view>
-			<view class="publish">评论</view>
+			<view class="item" @click="show_works">作品</view>
+			<view class="item" @click="show_likes">点赞</view>
+			<view class="item" @click="show_stars">收藏</view>
 		</view>
 		
 		<button v-if="!token" v-show="scrollTop<=100" class="login" size="mini" type="warn" hover-class="button-hover"
@@ -24,7 +23,7 @@
 			@click="logout">退出登录</button>
 
 		<button v-if="token" v-show="scrollTop<=100" class="changeUserInfo" size="mini" type="primary"
-			hover-class="button-hover" @click="open">更改密码</button>
+			hover-class="button-hover" @click="open">修改个人信息</button>
 		<uni-popup ref="popup" type="dialog">
 			<uni-popup-dialog title="更改密码" mode="input" message="成功消息" :duration="2000" :before-close="true"
 				@close="close" @confirm="confirm"></uni-popup-dialog>
@@ -47,15 +46,6 @@
 							<!-- 当前判断长度只为简单判断类型，实际业务中，根据逻辑直接渲染即可 -->
 							<image :src="require(`../../api/image/${item.img}`)" mode="aspectFill"></image>
 						</view>
-					</view>
-				</template>
-				<!-- 同步footer插槽定义列表底部的显示效果 -->
-				<template v-slot:footer>
-					<view class="uni-footer">
-						<text class="uni-footer-text">点赞</text>
-						<text class="uni-footer-text">收藏</text>
-						<text class="uni-footer-text">评论</text>
-						<text class="uni-footer-text">分享</text>
 					</view>
 				</template>
 			</uni-list-item>
@@ -81,12 +71,8 @@
 				// 页面互动的距离
 				scrollTop: 0,
 				token: uni.getStorageSync("token"),
-				showWhat: "myShares"
+				showWhat: "myWorks"
 			}
-		},
-		onShow() {
-			this.$store.dispatch("getUserInfo")
-			console.log(this.$store.state.userInfo)
 		},
 		methods: {
 			// 退出登录
@@ -108,7 +94,9 @@
 				})
 			},
 			open() {
-				this.$refs.popup.open()
+				uni.navigateTo({
+					url: "/pages/change_UserInfo/change_UserInfo"
+				})
 			},
 			/**
 			 * 点击取消按钮触发
@@ -126,16 +114,21 @@
 				this.$store.dispatch("changPassword", newPassword);
 				console.log("派发了一个action", newPassword)
 			},
-			/* show_Works() {
-				this.showWhat="works"
+			show_works() {
+				this.showWhat="myWorks";
+				//this.$store.dispatch("getmyworks");
+				console.log("显示我的作品！");
+				console.log(this.$store.state.myWorks);
 			},
 			show_likes() {
-				this.showWhat="likes"
-			}, */
+				this.showWhat="myLikes";
+				console.log("显示我的点赞！");
+			}, 
 			show_stars() {
 				this.showWhat="collectList";
+				//this.$store.dispatch("getcollectList");
 				console.log("显示收藏内容！");
-				console.log(this.$store.state.collectList)
+				console.log(this.$store.state.collectList);
 			}
 		},
 		computed: {
@@ -143,7 +136,8 @@
 				return this.$store.state.userInfo
 			},
 			mine() {
-				console.log("test")
+				console.log("mine:")
+				console.log(this.showWhat);
 				console.log(this.$store.state[this.showWhat])
 				return this.$store.state[this.showWhat]
 			}
@@ -151,7 +145,13 @@
 		onPageScroll: function(e) { //nvue暂不支持滚动监听，可用bindingx代替
 			this.scrollTop = e.scrollTop;
 		},
-		onReachBottom: function(e) {}
+		onReachBottom: function(e) {},
+		onShow(){
+			this.$store.dispatch("getUserInfo");
+			this.$store.dispatch("getcollectList");
+			this.$store.dispatch("getmyworks");
+			this.$store.dispatch("getmyLikes");
+		}
 	}
 </script>
 
@@ -212,7 +212,7 @@
 				color: white;
 			}
 
-			.publish {
+			.item {
 				height: 30px;
 				border-left: 1px solid #999;
 			}
@@ -236,6 +236,6 @@
 			left: 10%;
 			top: 90rpx;
 		}
-
+		
 	}
 </style>
