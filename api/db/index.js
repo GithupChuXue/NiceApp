@@ -14,6 +14,6 @@ const db = mysql.createPool({
     user: 'root',
     password: 'xzk123',
     database: 'niceapp'
-}) */
-
+})
+ */
 module.exports = db
