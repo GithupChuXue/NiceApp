@@ -110,9 +110,10 @@
 			},
 			// 
 			Collect(id) {
-				this.$refs.popup_collect[id].open();
+				// this.$refs.popup_collect[id].open();
 				// 派发收藏的action
 				this.$store.dispatch("getStar", id)
+				this.$refs.popup_collect[id].open();
 			},
 			Comment(id) {
 				this.$refs.inputDialog[id].open()
