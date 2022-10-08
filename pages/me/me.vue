@@ -5,9 +5,9 @@
 				<image src="../../images/squirrel.jpg"></image>
 			</view>
 			<view class="userinfo">
-				<view class="nickName">昵称：{{$store.state.userInfo.nickname}}</view>
-				<view class="account">用户名：{{$store.state.userInfo.username}}</view>
-				<view class="account">邮箱：{{$store.state.userInfo.email}}</view>
+				<view class="nickName">昵称：{{userInfo.nickname}}</view>
+				<view class="account">用户名：{{userInfo.username}}</view>
+				<view class="account">邮箱：{{userInfo.email}}</view>
 				<view class="singature">签名：</view>
 			</view>
 		</view>
@@ -94,7 +94,7 @@
 		},
 		computed: {
 			userInfo() {
-				this.$store.state.userInfo
+				return this.$store.state.userInfo
 			}
 		},
 		onPageScroll: function(e) { //nvue暂不支持滚动监听，可用bindingx代替
