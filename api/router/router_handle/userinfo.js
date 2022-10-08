@@ -118,6 +118,17 @@ exports.getUserMessage = (req, res) => {
     })
 }
 
+exports.getUserFavor = (req, res) => {
+    const sql = 'select * from shareinfo where shareid in (select shareid from favor where userid=? and disfavor=0) and is_delete=0'
+    db.query(sql, req.user.userid, (err, results) => {
+        if (err) return res.cc(err, 400)
+        res.send({
+            status: 200,
+            message: '获取我点赞的内容成功。',
+            data: results,
+        })
+    })
+}
 
 // // 更新用户头像
 // exports.update_avatar = (req, res) => {

@@ -17,7 +17,8 @@ router.get('/mycollection', userinfo_handle.getUserCollection)
 router.get('/myshare', userinfo_handle.getUserShare)
 // 获取消息
 router.get('/mymessage', userinfo_handle.getUserMessage)
-//
+// 获取我点赞的内容
+router.get('/myfavor', userinfo_handle.getUserFavor)
 
 // 更新用户信息
 router.post('/userinfo', expressJoi(upadate_userinfo_schema), userinfo_handle.updateUserinfo)
