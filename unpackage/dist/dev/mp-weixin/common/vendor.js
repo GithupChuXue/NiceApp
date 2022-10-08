@@ -19925,7 +19925,8 @@ var map = {
 	"./1665153649117_m7hPxsA0AHXn678e10b9f75dbb8ed451833921f7aff9.jpg": 161,
 	"./1665153784101_JkgL4JPVrqod678e10b9f75dbb8ed451833921f7aff9.jpg": 162,
 	"./1665157686444_p4Hd81yORsb1678e10b9f75dbb8ed451833921f7aff9.jpg": 163,
-	"./1665161347356_0SLI1eAhTKPLab8b58ead105f1d8261a0940d86b481d.png": 164
+	"./1665161347356_0SLI1eAhTKPLab8b58ead105f1d8261a0940d86b481d.png": 164,
+	"./1665198667667_fOysbzXmJcsEab8b58ead105f1d8261a0940d86b481d.png": 317
 };
 
 
@@ -21697,6 +21698,17 @@ function createAnimation(option, _this) {
   return new MPAnimation(option, _this);
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 316 */,
+/* 317 */
+/*!******************************************************************************************************!*\
+  !*** E:/aliproject/NiceApp/api/image/1665198667667_fOysbzXmJcsEab8b58ead105f1d8261a0940d86b481d.png ***!
+  \******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1665198667667_fOysbzXmJcsEab8b58ead105f1d8261a0940d86b481d.png";
 
 /***/ })
 ]]);

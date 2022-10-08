@@ -223,8 +223,15 @@ var _vuex = __webpack_require__(/*! vuex */ 138);var Nav = function Nav() {__web
   methods: {
     // 退出登录
     logout: function logout() {
+      console.log('退出');
+      console.log('token:', this.token);
       var token = uni.removeStorageSync("token");
-      console.log(token);
+      if (!token) {
+        uni.navigateTo({
+          url: "/pages/login/login" });
+
+      }
+      // console.log('token:', token)
     },
     login: function login() {
       console.log("me页 去往登录页");
