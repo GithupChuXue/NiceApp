@@ -1464,7 +1464,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -8556,7 +8556,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8577,14 +8577,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8670,7 +8670,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"niceApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -18559,7 +18559,7 @@ var store = new _vuex.default.Store({
     // 更新用户信息
 
     updateUserInfo: function updateUserInfo() {
-      uni.requset({
+      uni.request({
         url: "http://127.0.0.1:8888/my/userinfo",
         method: "POST",
         header: {
@@ -18577,7 +18577,7 @@ var store = new _vuex.default.Store({
     getStar: function getStar(_ref6,
 
     shareid) {var commit = _ref6.commit;
-      uni.requset({
+      uni.request({
         url: "http://127.0.0.1:8888/share/collect/".concat(shareid), // id是内容的shareid
         methods: "GET",
         header: {
@@ -18588,7 +18588,7 @@ var store = new _vuex.default.Store({
     },
     // 获取发布信息
     getPublishInfo: function getPublishInfo() {
-      uni.requset({
+      uni.request({
         url: "http://127.0.0.1:8888/my/myshare",
         methods: "GET",
         header: {
@@ -18601,7 +18601,7 @@ var store = new _vuex.default.Store({
     PublishComments: function PublishComments(_ref7,
 
     config) {var commit = _ref7.commit;
-      uni.requset({
+      uni.request({
         url: "http://127.0.0.1:8888/comment/upload",
         methods: "POST",
         header: {
@@ -18619,7 +18619,7 @@ var store = new _vuex.default.Store({
     getCommentsInfo: function getCommentsInfo(_ref8,
 
     id) {var commit = _ref8.commit;
-      uni.requset({
+      uni.request({
         url: "http://127.0.0.1:8888/comment/show/".concat(id), // id为评论的id，可直接进行拼接（替换:id）
         methods: "GET",
         header: {
@@ -19925,7 +19925,7 @@ var map = {
 	"./1665153649117_m7hPxsA0AHXn678e10b9f75dbb8ed451833921f7aff9.jpg": 161,
 	"./1665153784101_JkgL4JPVrqod678e10b9f75dbb8ed451833921f7aff9.jpg": 162,
 	"./1665157686444_p4Hd81yORsb1678e10b9f75dbb8ed451833921f7aff9.jpg": 163,
-	"./1665161347356_0SLI1eAhTKPLab8b58ead105f1d8261a0940d86b481d.png": 335
+	"./1665161347356_0SLI1eAhTKPLab8b58ead105f1d8261a0940d86b481d.png": 164
 };
 
 
@@ -20149,7 +20149,16 @@ module.exports = "/api/image/1665153784101_JkgL4JPVrqod678e10b9f75dbb8ed45183392
 module.exports = "/api/image/1665157686444_p4Hd81yORsb1678e10b9f75dbb8ed451833921f7aff9.jpg";
 
 /***/ }),
-/* 164 */,
+/* 164 */
+/*!******************************************************************************************************!*\
+  !*** E:/aliproject/NiceApp/api/image/1665161347356_0SLI1eAhTKPLab8b58ead105f1d8261a0940d86b481d.png ***!
+  \******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/api/image/1665161347356_0SLI1eAhTKPLab8b58ead105f1d8261a0940d86b481d.png";
+
+/***/ }),
 /* 165 */,
 /* 166 */,
 /* 167 */,
@@ -20251,7 +20260,8 @@ module.exports = "/api/image/1665157686444_p4Hd81yORsb1678e10b9f75dbb8ed45183392
 /* 263 */,
 /* 264 */,
 /* 265 */,
-/* 266 */
+/* 266 */,
+/* 267 */
 /*!*********************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-popup/components/uni-popup/popup.js ***!
   \*********************************************************************************/
@@ -20285,7 +20295,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     } } };exports.default = _default;
 
 /***/ }),
-/* 267 */
+/* 268 */
 /*!**************************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
   \**************************************************************************************/
@@ -20293,16 +20303,16 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 268));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 269));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 270));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 269));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 270));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 271));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
   en: _en.default,
   'zh-Hans': _zhHans.default,
   'zh-Hant': _zhHant.default };exports.default = _default;
 
 /***/ }),
-/* 268 */
+/* 269 */
 /*!*************************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
   \*************************************************************************************/
@@ -20312,7 +20322,7 @@ var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 2
 module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\"ok\",\"uni-popup.placeholder\":\"pleace enter\",\"uni-popup.title\":\"Hint\",\"uni-popup.shareTitle\":\"Share to\"}");
 
 /***/ }),
-/* 269 */
+/* 270 */
 /*!******************************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
   \******************************************************************************************/
@@ -20322,7 +20332,7 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\
 module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"确定\",\"uni-popup.placeholder\":\"请输入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
 
 /***/ }),
-/* 270 */
+/* 271 */
 /*!******************************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
   \******************************************************************************************/
@@ -20332,7 +20342,6 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"確定\",\"uni-popup.placeholder\":\"請輸入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
 
 /***/ }),
-/* 271 */,
 /* 272 */,
 /* 273 */,
 /* 274 */,
@@ -20360,7 +20369,8 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 /* 296 */,
 /* 297 */,
 /* 298 */,
-/* 299 */
+/* 299 */,
+/* 300 */
 /*!*********************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \*********************************************************************************/
@@ -21536,7 +21546,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     "unicode_decimal": 58929 }] };exports.default = _default;
 
 /***/ }),
-/* 300 */,
 /* 301 */,
 /* 302 */,
 /* 303 */,
@@ -21550,7 +21559,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* 311 */,
 /* 312 */,
 /* 313 */,
-/* 314 */
+/* 314 */,
+/* 315 */
 /*!*****************************************************************************************************!*\
   !*** E:/aliproject/NiceApp/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
   \*****************************************************************************************************/
@@ -21687,36 +21697,6 @@ function createAnimation(option, _this) {
   return new MPAnimation(option, _this);
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-/* 315 */,
-/* 316 */,
-/* 317 */,
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */,
-/* 331 */,
-/* 332 */,
-/* 333 */,
-/* 334 */,
-/* 335 */
-/*!******************************************************************************************************!*\
-  !*** E:/aliproject/NiceApp/api/image/1665161347356_0SLI1eAhTKPLab8b58ead105f1d8261a0940d86b481d.png ***!
-  \******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/api/image/1665161347356_0SLI1eAhTKPLab8b58ead105f1d8261a0940d86b481d.png";
 
 /***/ })
 ]]);

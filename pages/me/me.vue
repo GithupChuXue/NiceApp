@@ -5,10 +5,10 @@
 				<image src="../../images/squirrel.jpg"></image>
 			</view>
 			<view class="userinfo">
-				<view class="nickName">昵称：{{userInfo.nickname}}</view>
-				<view class="account">用户名：{{userInfo.username}}</view>
-				<view class="account">邮箱：{{userInfo.email}}</view>
-				<view class="singature">签名：</view>
+				<view class="nickName">昵称：{{userInfo.nickname || ""}}</view>
+				<view class="account">用户名：{{userInfo.username || ""}}</view>
+				<view class="account">邮箱：{{userInfo.email || ""}}</view>
+				<view class="singature">签名：{{userInfo.email || ""}}</view>
 			</view>
 		</view>
 		<view class="user-content">
