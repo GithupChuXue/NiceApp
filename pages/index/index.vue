@@ -3,12 +3,13 @@
 	<view class="index">
 
 		<!-- 搜索栏 -->
-		<view class="search">
+		<!-- <view class="search">
 			<table>
 				<input class="ipt" type="text" confirm-type="search" placeholder="搜索感兴趣的内容吧">
 				<button class="enter_btn" type="default" plain size="mini" form-type="submit">搜索</button>
 			</table>
-		</view>
+		</view> -->
+		<uni-search-bar @confirm="search" placeholder="搜索感兴趣的内容吧"></uni-search-bar>
 
 		<!-- 预览展示区域 -->
 		<view class="show">
@@ -17,7 +18,7 @@
 				<uni-list-item direction="column" v-for="(item,index) in list" :key="item.shareid">
 					<!-- 通过header插槽定义列表的标题 -->
 					<template v-slot:header>
-						<view class="uni-note">{{item.publisher}} {{item.time |myFilter}}</view>
+						<view class="uni-note">{{item.publisher}} {{item.shareid}} {{index}} {{item.time |myFilter}}</view>
 					</template>
 					<!-- 通过body插槽定义列表内容显示 -->
 					<template v-slot:body>
@@ -34,19 +35,19 @@
 					<!-- 同步footer插槽定义列表底部的显示效果 -->
 					<template v-slot:footer>
 						<view class=" uni-footer">
-							<text class="uni-footer-text" @click="ThumbsUp(item.shareid)">点赞</text>
+							<text class="uni-footer-text" @click="ThumbsUp(item.shareid, index)">点赞</text>
 							<uni-popup ref="popup_thumbsup" type="center">点赞！</uni-popup>
 
-							<text class="uni-footer-text" @click="Collect(item.shareid)">收藏</text>
+							<text class="uni-footer-text" @click="Collect(item.shareid, index)">收藏</text>
 							<uni-popup ref="popup_collect" type="center">收藏！</uni-popup>
 
-							<text class="uni-footer-text" @click="Comment(item.shareid)">评论</text>
+							<text class="uni-footer-text" @click="Comment(item.shareid, index)">评论</text>
 							<uni-popup ref="inputDialog" type="dialog">
 								<uni-popup-dialog type="center" mode="input" @confirm="confirm">
 								</uni-popup-dialog>
 							</uni-popup>
 
-							<text class="uni-footer-text" @click="Share(item.shareid)">分享</text>
+							<text class="uni-footer-text" @click="Share(item.shareid, index)">分享</text>
 							<uni-popup ref="share" type="share" safeArea backgroundColor="#fff">
 								<uni-popup-share title="分享到" @select="select">
 								</uni-popup-share>
@@ -71,6 +72,7 @@
 	import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
 	import uniPopupDialog from '@/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue';
 	import uniPopupShare from '@/uni_modules/uni-popup/components/uni-popup-share/uni-popup-share.vue';
+	import uniSearchBar from '@/uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar.vue';
 
 
 	export default {
@@ -81,7 +83,8 @@
 			uniLoadMore,
 			uniPopup,
 			uniPopupDialog,
-			uniPopupShare
+			uniPopupShare,
+			uniSearchBar
 		},
 		onShow() {
 			this.$store.dispatch("getAllinInfo");
@@ -94,6 +97,7 @@
 
 		data() {
 			return {
+				resultsList: [],
 				status: "more",
 				contentText: {
 					contentdown: "更多精彩",
@@ -105,27 +109,29 @@
 		},
 
 		methods: {
-			ThumbsUp(id) {
-				this.$refs.popup_thumbsup[id].open()
+			search(val) {
+				uni.navigateTo({
+					url: `/pages/result/result?keyword=${val.value}`
+				})
+			},
+			ThumbsUp(id, index) {
+				this.$refs.popup_thumbsup[index].open()
 			},
 			// 
-			Collect(id) {
-				// this.$refs.popup_collect[id].open();
+			Collect(id, index) {
 				// 派发收藏的action
 				this.$store.dispatch("getStar", id)
-				this.$refs.popup_collect[id].open();
+				this.$refs.popup_collect[index].open();
 			},
-			Comment(id) {
-				this.$refs.inputDialog[id].open()
+			Comment(id, index) {
+				this.$refs.inputDialog[index].open()
 			},
 			confirm(value) {
 				console.log(value);
 			},
-			Share(id) {
-				this.$refs.share[id].open()
+			Share(id, index) {
+				this.$refs.share[index].open()
 			},
-			// 触发收藏的方法
-
 		},
 		computed: {
 			list() {

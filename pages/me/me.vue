@@ -2,7 +2,7 @@
 	<view class="user">
 		<view class="user-header">
 			<view class="image">
-				<image src="../../images/squirrel.jpg"></image>
+				<image :src="require('../../images/squirrel.jpg')"></image>
 			</view>
 			<view class="userinfo">
 				<view class="nickName">昵称：{{userInfo.nickname || ""}}</view>
@@ -14,10 +14,10 @@
 		<view class="user-content">
 			<view class="works">作品</view>
 			<view class="publish">点赞</view>
-			<view class="publish">收藏</view>
-			<view class="publish">喜欢</view>
+			<view class="publish" @click="show_stars">收藏</view>
+			<view class="publish">评论</view>
 		</view>
-		<Nav></Nav>
+		
 		<button v-if="!token" v-show="scrollTop<=100" class="login" size="mini" type="warn" hover-class="button-hover"
 			@click="login">请登录</button>
 		<button v-if="token" v-show="scrollTop<=100" class="logout" size="mini" type="warn" hover-class="button-hover"
@@ -29,14 +29,42 @@
 			<uni-popup-dialog title="更改密码" mode="input" message="成功消息" :duration="2000" :before-close="true"
 				@close="close" @confirm="confirm"></uni-popup-dialog>
 		</uni-popup>
-
+		
+		<uni-list>
+			<!-- to 属性携带参数跳转详情页面，当前只为参考 -->
+			<uni-list-item direction="column" v-for="(item,index) in mine" :key="item.shareid">
+				<!-- 通过header插槽定义列表的标题 -->
+				<template v-slot:header>
+					<view class="uni-note">{{item.publisher}} {{item.time}}</view>
+				</template>
+				<!-- 通过body插槽定义列表内容显示 -->
+				<template v-slot:body>
+					<view class="uni-list-box">
+						<view class="uni-content">
+							<view class="uni-title-sub uni-ellipsis-2">{{item.title}}</view>
+						</view>
+						<view class="uni-thumb">
+							<!-- 当前判断长度只为简单判断类型，实际业务中，根据逻辑直接渲染即可 -->
+							<image :src="require(`../../api/image/${item.img}`)" mode="aspectFill"></image>
+						</view>
+					</view>
+				</template>
+				<!-- 同步footer插槽定义列表底部的显示效果 -->
+				<template v-slot:footer>
+					<view class="uni-footer">
+						<text class="uni-footer-text">点赞</text>
+						<text class="uni-footer-text">收藏</text>
+						<text class="uni-footer-text">评论</text>
+						<text class="uni-footer-text">分享</text>
+					</view>
+				</template>
+			</uni-list-item>
+		</uni-list>
 
 	</view>
 </template>
 
 <script>
-	import Nav from "../../components/nav/nav.vue";
-
 	import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
 	import uniPopupDialog from '@/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue';
 	import {
@@ -45,7 +73,6 @@
 
 	export default {
 		components: {
-			Nav,
 			uniPopup,
 			uniPopupDialog,
 		},
@@ -54,6 +81,7 @@
 				// 页面互动的距离
 				scrollTop: 0,
 				token: uni.getStorageSync("token"),
+				showWhat: "myShares"
 			}
 		},
 		onShow() {
@@ -98,10 +126,26 @@
 				this.$store.dispatch("changPassword", newPassword);
 				console.log("派发了一个action", newPassword)
 			},
+			/* show_Works() {
+				this.showWhat="works"
+			},
+			show_likes() {
+				this.showWhat="likes"
+			}, */
+			show_stars() {
+				this.showWhat="collectList";
+				console.log("显示收藏内容！");
+				console.log(this.$store.state.collectList)
+			}
 		},
 		computed: {
 			userInfo() {
 				return this.$store.state.userInfo
+			},
+			mine() {
+				console.log("test")
+				console.log(this.$store.state[this.showWhat])
+				return this.$store.state[this.showWhat]
 			}
 		},
 		onPageScroll: function(e) { //nvue暂不支持滚动监听，可用bindingx代替

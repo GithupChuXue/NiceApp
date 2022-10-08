@@ -7,8 +7,8 @@ const store = new Vuex.Store({
 		token: uni.getStorageSync("token"),
 		userInfo: {},
 		List: [],
-		conllectList: [],
-		conllectInfo: [],
+		collectList: [],
+		collectInfo: [],
 
 	},
 	mutations: {
@@ -21,13 +21,13 @@ const store = new Vuex.Store({
 			state.List = List;
 		},
 		// 获取所有收藏的
-		GetConllectList(state, conllectList) {
-			state.conllectList = conllectList;
+		GetcollectList(state, collectList) {
+			state.collectList = collectList;
 		},
 		// 获取收藏的详细信息
-		GetConllecInfo(state, conllectInfo) {
-			state.conllectInfo = conllectInfo;
-			console.log("state中的conllectInfo", state.conllectInfo);
+		GetConllecInfo(state, collectInfo) {
+			state.collectInfo = collectInfo;
+			console.log("state中的collectInfo", state.collectInfo);
 		}
 
 	},
@@ -71,7 +71,7 @@ const store = new Vuex.Store({
 		},
 
 		// 读取所有收藏信息
-		getConllectList({
+		getcollectList({
 			commit
 		}) {
 			uni.request({
@@ -83,13 +83,13 @@ const store = new Vuex.Store({
 				},
 				success(res) {
 					if (res.data.status === 200) {
-						commit("GetConllectList", res.data.data)
+						commit("GetcollectList", res.data.data)
 					}
 				}
 			})
 		},
 		// 获取某一个指定的内容
-		getConllectInfo({
+		getcollectInfo({
 			commit
 		}, config) {
 			uni.request({
@@ -101,7 +101,7 @@ const store = new Vuex.Store({
 				},
 				success(res) {
 					if (res.data.status === 200) {
-						commit("GetConllecInfo", conllectInfo)
+						commit("GetConllecInfo", collectInfo)
 					}
 				}
 			})
@@ -202,8 +202,27 @@ const store = new Vuex.Store({
 				},
 			})
 		},
-
-
+		//搜索包含指定字段的内容
+		getResultsList({
+			commit
+		}, keyword) {
+			uni.request({
+				url: `http://127.0.0.1:8888/share/search/${keyword}`,
+				method: "GET",
+				header: {
+					'content-type': "application/x-www-form-urlencoded",
+					'Authorization':`${this.state.token}`
+				},
+				success: (res) => {
+					if (res.data.status === 200) {
+						console.log("搜索到结果:");
+						console.log(res.data.data);
+						//return Promise.resolve(true)
+						return res.data.data
+					}
+				}
+			});
+		}
 	}
 })
 
