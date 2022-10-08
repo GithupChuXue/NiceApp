@@ -103,7 +103,7 @@ exports.getUserMessage = (req, res) => {
     db.query(sql, req.user.username, (err, results) => {
         if (err) return res.cc(err, 400)
         const commentdata = results
-        const sql = 'select * from favor where shareid in (select shareid from shareinfo where publisher=? and is_delete=0) and disfavor=0'
+        const sql = 'select * from userinfo where userid in (select userid from favor where shareid in (select shareid from shareinfo where publisher=? and is_delete=0) and disfavor=0)'
         db.query(sql, req.user.username, (err, results) => {
             if (err) return res.cc(err, 400)
             const favordata = results
