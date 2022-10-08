@@ -15,10 +15,10 @@
 		<view class="show">
 			<uni-list>
 				<!-- to 属性携带参数跳转详情页面，当前只为参考 :to="`/pages/detail/detail?id=${item.shareid}`"-->
-				<uni-list-item direction="column" v-for="(item,index) in list" :key="item.shareid" clickable @click="showDetail(item.shareid)">
+				<uni-list-item direction="column" v-for="(item,index) in list" :key="item.shareid">
 					<!-- 通过header插槽定义列表的标题 -->
 					<template v-slot:header>
-						<view class="uni-note">{{item.publisher}} {{item.time |myFilter}}</view>
+						<view class="uni-note" @click="showDetail(item.shareid)">{{item.publisher}} {{item.time |myFilter}}</view>
 					</template>
 					<!-- 通过body插槽定义列表内容显示 -->
 					<template v-slot:body>

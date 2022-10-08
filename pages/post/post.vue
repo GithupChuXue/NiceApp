@@ -11,8 +11,6 @@
 				</view>
 			</view>
 			<view>
-				<view class="tag">@某位用户</view>
-				<view class="tag">#话题</view>
 				<button class="upload" type="default" plain size="mini" form-type="submit"
 					@click="getImage">上传图片</button>
 				<button class="postout" type="default" plain size="mini" form-type="submit"

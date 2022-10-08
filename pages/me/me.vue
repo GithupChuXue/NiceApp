@@ -5,10 +5,10 @@
 				<image :src="require('../../images/squirrel.jpg')"></image>
 			</view>
 			<view class="userinfo">
-				<view class="nickName">昵称：{{userInfo.nickname || ""}}</view>
+				<!-- <view class="nickName">昵称：{{userInfo.nickname || ""}}</view> -->
 				<view class="account">用户名：{{userInfo.username || ""}}</view>
-				<view class="account">邮箱：{{userInfo.email || ""}}</view>
-				<view class="singature">签名：{{userInfo.email || ""}}</view>
+				<!-- <view class="account">邮箱：{{userInfo.email || ""}}</view>
+				<view class="singature">签名：{{userInfo.email || ""}}</view> -->
 			</view>
 		</view>
 		<view class="user-content">
@@ -34,7 +34,7 @@
 			<uni-list-item direction="column" v-for="(item,index) in mine" :key="item.shareid">
 				<!-- 通过header插槽定义列表的标题 -->
 				<template v-slot:header>
-					<view class="uni-note">{{item.publisher}} {{item.time}}</view>
+					<view class="uni-note">{{item.publisher}} {{item.time | myFilter}}</view>
 				</template>
 				<!-- 通过body插槽定义列表内容显示 -->
 				<template v-slot:body>
@@ -177,7 +177,7 @@
 		.userinfo {
 
 			width: 700rpx;
-			height: 300rpx;
+			height: 100rpx;
 			border-top: 8px solid #777;
 			box-shadow: 0 0 5px #999;
 			margin: 0 auto;

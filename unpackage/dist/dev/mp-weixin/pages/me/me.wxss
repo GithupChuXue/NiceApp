@@ -41,7 +41,7 @@
 }
 .user .userinfo.data-v-259fb574 {
   width: 700rpx;
-  height: 300rpx;
+  height: 100rpx;
   border-top: 8px solid #777;
   box-shadow: 0 0 5px #999;
   margin: 0 auto;
@@ -72,7 +72,7 @@
   background-color: #999;
   color: white;
 }
-.user .user-content .publish.data-v-259fb574 {
+.user .user-content .item.data-v-259fb574 {
   height: 30px;
   border-left: 1px solid #999;
 }

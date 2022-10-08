@@ -7,7 +7,7 @@
 				<view class="uni-note">{{content.publisher}} {{content.time |myFilter}}</view>
 			
 				<view class="imgShared">
-					<!-- <image :src="require(`../../api/image/${content.img}`)"></image> -->
+					<image :src="require(`../../api/image/${content.img}`)"></image>
 				</view>
 				
 				<view class="textShared">{{content.text}}</view>
