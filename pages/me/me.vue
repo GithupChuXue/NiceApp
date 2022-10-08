@@ -2,7 +2,7 @@
 	<view class="user">
 		<view class="user-header">
 			<view class="image">
-				<image src="../../images/squirrel.jpg"></image>
+				<image :src="require(`../../images/preview1.jpg`)"></image>
 			</view>
 			<view class="userinfo">
 				<view class="nickName">昵称：{{userInfo.nickname || ""}}</view>
