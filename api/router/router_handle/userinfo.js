@@ -99,11 +99,11 @@ exports.updatePass = function (req, res) {
 // 获取消息
 // /my/mymessage
 exports.getUserMessage = (req, res) => {
-    const sql = 'select * from comment where shareid in (select shareid from shareinfo where publisher=?) and is_delete=0'
+    const sql = 'select * from comment where shareid in (select shareid from shareinfo where publisher=? and is_delete=0) and is_delete=0'
     db.query(sql, req.user.username, (err, results) => {
         if (err) return res.cc(err, 400)
         const commentdata = results
-        const sql = 'select * from favor where shareid in (select shareid from shareinfo where publisher=?) and disfavor=0'
+        const sql = 'select * from favor where shareid in (select shareid from shareinfo where publisher=? and is_delete=0) and disfavor=0'
         db.query(sql, req.user.username, (err, results) => {
             if (err) return res.cc(err, 400)
             const favordata = results

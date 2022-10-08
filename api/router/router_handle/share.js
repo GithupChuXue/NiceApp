@@ -137,9 +137,9 @@ exports.delete_share_id = (req, res) => {
 // /share/search/:search
 exports.search_share = (req, res) => {
     const str = '\'%' + req.params.search + '%\''
-    console.log(str)
+    // console.log(str)
     const sql = 'select * from shareinfo where title like '+ str +' or text like ' + str
-    console.log(sql)
+    // console.log(sql)
     db.query(sql, (err, results) => {
         if (err) return res.cc(err, 400)
         console.log(results)
@@ -148,6 +148,19 @@ exports.search_share = (req, res) => {
             message: `成功搜索到包含字段${req.params.search}的内容`,
             data: results,
         })
+    })
+}
+
+exports.favor_share_id_user = (req, res) => {
+    const sql = 'select * from userinfo where userid in (select userid from favor where shareid=?)'
+    db.query(sql, req.params.id, (err, results) => {
+        if (err) return res.cc(err, 400)
+        res.send({
+            status: 200,
+            message: '成功获取点赞用户信息。',
+            data: results,
+        })
+
     })
 }
 

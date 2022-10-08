@@ -49,6 +49,10 @@ router.get('/collect/:id', expressJoi(id_share_schema), shareRouterHandle.collec
 // /share/favor/:id
 router.get('/favor/:id', expressJoi(id_share_schema), shareRouterHandle.favor_share_id)
 
+// 获取内容的点赞信息
+// /share/favor/user/:id
+router.get('/favor/user/:id', expressJoi(id_share_schema), shareRouterHandle.favor_share_id_user)
+
 // 删除目标内容
 // /share/delete/:id
 router.get('/delete/:id', expressJoi(id_share_schema), shareRouterHandle.delete_share_id)
