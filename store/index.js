@@ -37,7 +37,7 @@ const store = new Vuex.Store({
 			commit
 		}) {
 			uni.request({
-				url: "http://127.0.0.1:8888/my/userinfo",
+				url: "http://47.92.120.204:8888/my/userinfo",
 				method: "GET",
 				header: {
 					'Authorization': `${this.state.token}`,
@@ -54,7 +54,7 @@ const store = new Vuex.Store({
 			commit
 		}) {
 			uni.request({
-				url: "http://127.0.0.1:8888/share/show",
+				url: "http://47.92.120.204:8888/share/show",
 				methods: "GET",
 				header: {
 					'content-type': "application/x-www-form-urlencoded",
@@ -75,7 +75,7 @@ const store = new Vuex.Store({
 			commit
 		}) {
 			uni.request({
-				url: "http://127.0.0.1:8888/my/mycollection",
+				url: "http://47.92.120.204:8888/my/mycollection",
 				methods: "GET",
 				header: {
 					//'content-type': "application/x-www-form-urlencoded",
@@ -93,7 +93,7 @@ const store = new Vuex.Store({
 			commit
 		}, config) {
 			uni.request({
-				url: `http://127.0.0.1:8888/share/show/${config.id}`,
+				url: `http://47.92.120.204:8888/share/show/${config.id}`,
 				methods: "GET",
 				header: {
 					'content-type': "application/x-www-form-urlencoded",
@@ -111,7 +111,7 @@ const store = new Vuex.Store({
 			commit
 		}, newPassword) {
 			uni.request({
-				url: "http://127.0.0.1:8888/my/updatepass",
+				url: "http://47.92.120.204:8888/my/updatepass",
 				method: "POST",
 				header: {
 					'content-type': "application/x-www-form-urlencoded",
@@ -134,7 +134,7 @@ const store = new Vuex.Store({
 
 		updateUserInfo() {
 			uni.request({
-				url: "http://127.0.0.1:8888/my/userinfo",
+				url: "http://47.92.120.204:8888/my/userinfo",
 				method: "POST",
 				header: {
 					'content-type': "application/x-www-form-urlencoded",
@@ -152,7 +152,7 @@ const store = new Vuex.Store({
 			commit
 		}, shareid) {
 			uni.request({
-				url: `http://127.0.0.1:8888/share/collect/${shareid}`, // id是内容的shareid
+				url: `http://47.92.120.204:8888/share/collect/${shareid}`, // id是内容的shareid
 				methods: "GET",
 				header: {
 					'content-type': "application/x-www-form-urlencoded",
@@ -163,7 +163,7 @@ const store = new Vuex.Store({
 		// 获取发布信息
 		getPublishInfo() {
 			uni.request({
-				url: "http://127.0.0.1:8888/my/myshare",
+				url: "http://47.92.120.204:8888/my/myshare",
 				methods: "GET",
 				header: {
 					'content-type': "application/x-www-form-urlencoded",
@@ -176,7 +176,7 @@ const store = new Vuex.Store({
 			commit
 		}, config) {
 			uni.request({
-				url: "http://127.0.0.1:8888/comment/upload",
+				url: "http://47.92.120.204:8888/comment/upload",
 				methods: "POST",
 				header: {
 					'content-type': "application/x-www-form-urlencoded",
@@ -194,7 +194,7 @@ const store = new Vuex.Store({
 			commit
 		}, id) {
 			uni.request({
-				url: `http://127.0.0.1:8888/comment/show/${id}`, // id为评论的id，可直接进行拼接（替换:id）
+				url: `http://47.92.120.204:8888/comment/show/${id}`, // id为评论的id，可直接进行拼接（替换:id）
 				methods: "GET",
 				header: {
 					'content-type': "application/x-www-form-urlencoded",
