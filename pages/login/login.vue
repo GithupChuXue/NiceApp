@@ -76,7 +76,7 @@
 					return false
 				}
 				uni.request({
-					url: "http://127.0.0.1:8888/user/login",
+					url: "http://47.92.120.204:8888/user/login",
 					method: 'POST', // 请求方法
 					header: {
 						'content-type': "application/x-www-form-urlencoded"

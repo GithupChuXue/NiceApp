@@ -4,8 +4,8 @@ const username = joi.string().alphanum().min(3).max(10).required()
 const password = joi.string().pattern(/^[\S]{6,12}$/).required()
 
 const id = joi.number().integer().min(1).required()
-const nickname = joi.string().required()
-const email = joi.string().email().required()
+const nickname = joi.string()
+const email = joi.string().email()
 
 const avatar = joi.string().dataUri().required()
 
