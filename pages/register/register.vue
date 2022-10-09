@@ -68,7 +68,7 @@
 				console.log(this.username);
 				console.log(this.password);
 				uni.request({
-					url: "http://47.92.120.204:8888/user/register",
+					url: "http://127.0.0.1:8888/user/register",
 					data: {
 						username: this.username,
 						password: this.password,

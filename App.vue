@@ -3,11 +3,14 @@
 
 	export default {
 		onLaunch: function() {
-			// this.$store.dispatch("getUserInfo")
-			// this.$store.dispatch("getAllinInfo")
-			// this.$store.dispatch("getConllectList")
-			// this.$store.dispatch("getConllectInfo")
-
+			if(this.$store.state.token){
+				this.$store.dispatch("getUserInfo");
+				this.$store.dispatch("getAllinInfo");
+				this.$store.dispatch("getcollectList");
+				this.$store.dispatch("getmyworks");
+				this.$store.dispatch("getmyLikes");
+				this.$store.dispatch("getmsgs");
+			}
 		},
 		onShow: function() {
 			console.log('App Show')

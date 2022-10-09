@@ -3,19 +3,19 @@
 	<view class="index">
 
 		<!-- 搜索栏 -->
-		<view class="search">
+		<!-- <view class="search">
 			<table>
 				<input class="ipt" type="text" placeholder="搜索感兴趣的内容吧">
 				<button class="enter_btn" type="default" plain size="mini" form-type="submit">搜索</button>
 			</table>
-		</view>
+		</view> -->
+		<uni-search-bar @confirm="search" @input="input" placeholder="搜索感兴趣的内容吧"></uni-search-bar>
 
 		<!-- 预览展示区域 -->
 		<view class="show">
 			<uni-list>
 				<!-- to 属性携带参数跳转详情页面，当前只为参考 -->
-				<uni-list-item direction="column" v-for="(item,index) in conllectList" :key="item.shareid"
-					:to="'/pages/detail/detail?id='+item.shareid">
+				<uni-list-item direction="column" v-for="(item,index) in collectList" :key="item.shareid">
 					<!-- 通过header插槽定义列表的标题 -->
 					<template v-slot:header>
 						<view class="uni-note">{{item.publisher}} {{item.time |myFilter}}</view>
@@ -35,10 +35,23 @@
 					<!-- 同步footer插槽定义列表底部的显示效果 -->
 					<template v-slot:footer>
 						<view class="uni-footer">
-							<text class="uni-footer-text">点赞</text>
-							<text class="uni-footer-text">收藏</text>
-							<text class="uni-footer-text">评论</text>
-							<text class="uni-footer-text">分享</text>
+							<text class="uni-footer-text" @click.stop="ThumbsUp(item.shareid, index)">点赞</text>
+							<uni-popup ref="popup_thumbsup" type="center">点赞！</uni-popup>
+							
+							<text class="uni-footer-text" @click.stop="Collect(item.shareid, index)">收藏</text>
+							<uni-popup ref="popup_collect" type="center">收藏！</uni-popup>
+							
+							<text class="uni-footer-text" @click.stop="Comment(item.shareid, index)">评论</text>
+							<uni-popup ref="inputDialog" type="dialog">
+								<uni-popup-dialog type="center" mode="input" @confirm="confirm">
+								</uni-popup-dialog>
+							</uni-popup>
+							
+							<text class="uni-footer-text" @click.stop="Share(item.shareid, index)">分享</text>
+							<uni-popup ref="share" type="share" safeArea backgroundColor="#fff">
+								<uni-popup-share title="分享到" @select="select">
+								</uni-popup-share>
+							</uni-popup>
 						</view>
 					</template>
 				</uni-list-item>
@@ -54,14 +67,21 @@
 	import uniList from '@/uni_modules/uni-list/components/uni-list/uni-list.vue';
 	import uniListItem from '@/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue';
 	import uniLoadMore from '@/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue';
-	import read from '../../services/read.js';
+	import uniPopup from '@/uni_modules/uni-popup/components/uni-popup/uni-popup.vue';
+	import uniPopupDialog from '@/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue';
+	import uniPopupShare from '@/uni_modules/uni-popup/components/uni-popup-share/uni-popup-share.vue';
+	import uniSearchBar from '@/uni_modules/uni-search-bar/components/uni-search-bar/uni-search-bar.vue';
 
 	export default {
 
 		components: {
 			uniList,
 			uniListItem,
-			uniLoadMore
+			uniLoadMore,
+			uniPopup,
+			uniPopupDialog,
+			uniPopupShare,
+			uniSearchBar
 		},
 
 		data() {
@@ -69,21 +89,39 @@
 		},
 
 		methods: {
-			// 通过
+			search(val) {
+				console.log(val)
+			},
+			ThumbsUp(id, index) {
+				this.$refs.popup_thumbsup[index].open()
+			},
+			// 
+			Collect(id, index) {
+				// 派发收藏的action
+				this.$store.dispatch("getStar", id)
+				this.$refs.popup_collect[index].open();
+			},
+			Comment(id, index) {
+				this.$refs.inputDialog[index].open()
+			},
+			confirm(value) {
+				console.log(value);
+			},
+			Share(id, index) {
+				this.$refs.share[index].open()
+			},
 		},
 		computed: {
-			conllectList() {
-				return this.$store.state.conllectList;
+			collectList() {
+				return this.$store.state.collectList;
 			}
 		},
 		mounted() {
-			this.$store.dispatch("getConllectList");
-			// this.$store.dispatch("getConllectInfo");
+			this.$store.dispatch("getcollectList");
 		},
 		onShow() {
 
-			this.$store.dispatch("getConllectList");
-			// this.$store.dispatch("getConllectInfo");
+			this.$store.dispatch("getcollectList");
 		},
 		//下拉刷新回调函数
 		// onPullDownRefresh() {

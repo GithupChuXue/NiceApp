@@ -24,108 +24,25 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.uni-flex, .uni-flex-row, .uni-media-box, .uni-footer, .uni-flex-column, .uni-list-box, .uni-content {
+.message .message-content.data-v-a91f51d4 {
+  width: 700rpx;
+  line-height: 30px;
+  border: 2px solid #999;
+  margin: 0 auto;
+  margin-top: 40rpx;
   display: flex;
+  justify-content: space-around;
+  margin-bottom: 50rpx;
 }
-.uni-flex-row, .uni-media-box, .uni-footer {
-  flex-direction: row;
-  box-sizing: border-box;
+.message .message-content view.data-v-a91f51d4 {
+  width: 50%;
 }
-.uni-flex-column, .uni-list-box, .uni-content {
-  flex-direction: column;
+.message .message-content view.data-v-a91f51d4:hover {
+  background-color: #999;
+  color: white;
 }
-.uni-color-gary {
-  color: #3b4144;
-}
-/* 标题 */
-.uni-title {
-  display: flex;
-  margin-bottom: 8px;
-  font-size: 16;
-  font-weight: bold;
-  color: #3b4144;
-}
-.uni-title-sub {
-  display: flex;
-  font-size: 14px;
-  font-weight: 500;
-  color: #3b4144;
-}
-/* 描述 额外文本 */
-.uni-note {
-  margin-top: 10px;
-  color: #999;
-  font-size: 12px;
-}
-/* 列表内容 */
-.uni-list-box {
-  flex: 1;
-  margin-top: 10px;
-}
-/* 略缩图 */
-.uni-thumb {
-  flex-shrink: 0;
-  margin-right: 10px;
-  width: 125px;
-  height: 75px;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px #f5f5f5 solid;
-}
-.uni-thumb image {
-  width: 100%;
-  height: 100%;
-}
-.uni-media-box {
-  border-radius: 6px;
-  overflow: hidden;
-}
-.uni-media-box .uni-thumb {
-  margin: 0;
-  margin-left: 4px;
-  flex-shrink: 1;
-  width: 33%;
-  border-radius: 0;
-}
-.uni-media-box .uni-thumb:first-child {
-  margin: 0;
-}
-/* 内容 */
-.uni-content {
-  justify-content: space-between;
-}
-/* 列表footer */
-.uni-footer {
-  justify-content: space-between;
-  margin-top: 12px;
-}
-.uni-footer-text {
-  font-size: 12px;
-  color: #999;
-  margin-left: 5px;
-}
-/* 标签 */
-.uni-tag {
-  flex-shrink: 0;
-  padding: 0 5px;
-  border: 1px #c8c7cc solid;
-  margin-right: 5px;
-  border-radius: 3px;
-  background: #f8f8f8;
-  color: #333;
-  font-size: 12px;
-}
-/* 链接 */
-.uni-link {
-  margin-left: 10px;
-  color: #333;
-  text-decoration: underline;
-}
-.index {
-  vertical-align: middle;
-}
-.index .show {
-  width: 100%;
-  background-color: #c6c6c6;
+.message .message-content .choice.data-v-a91f51d4 {
+  height: 30px;
+  border-left: 1px solid #999;
 }
 

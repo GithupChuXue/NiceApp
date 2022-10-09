@@ -57,9 +57,10 @@
 			changeSignature(){
 				this.$refs.inputSignature.open()
 			},
-			
+
 			confirmPassword(Password_changed){
-				console.log(Password_changed)
+				console.log(Password_changed);
+				this.$store.dispatch("changePassword", Password_changed);
 			},
 			confirmNickname(Nickname_changed){
 				console.log(Nickname_changed)

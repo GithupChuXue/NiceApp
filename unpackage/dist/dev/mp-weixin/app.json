@@ -44,12 +44,6 @@
       },
       {
         "text": "",
-        "pagePath": "pages/message/message",
-        "iconPath": "static/icon/messages.png",
-        "selectedIconPath": "static/icon/messages_cur.png"
-      },
-      {
-        "text": "",
         "pagePath": "pages/me/me",
         "iconPath": "static/icon/account.png",
         "selectedIconPath": "static/icon/account_cur.png"

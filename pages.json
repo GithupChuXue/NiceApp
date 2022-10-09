@@ -105,12 +105,12 @@
 				"iconPath": "static/icon/post.png",
 				"selectedIconPath": "static/icon/post_cur.png"
 			},
-			{
+			/* {
 				"text": "",
 				"pagePath": "pages/message/message",
 				"iconPath": "static/icon/messages.png",
 				"selectedIconPath": "static/icon/messages_cur.png"
-			},
+			}, */
 			{
 				"text": "",
 				"pagePath": "pages/me/me",

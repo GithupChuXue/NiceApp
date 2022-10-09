@@ -11,8 +11,6 @@
 				</view>
 			</view>
 			<view>
-				<view class="tag">@某位用户</view>
-				<view class="tag">#话题</view>
 				<button class="upload" type="default" plain size="mini" form-type="submit"
 					@click="getImage">上传图片</button>
 				<button class="postout" type="default" plain size="mini" form-type="submit"
@@ -57,7 +55,7 @@
 				console.log('路径',this.imagePaths[0], typeof(this.imagePaths))
 				console.log('图像',this.imageFile)
 				uni.uploadFile({
-					url: 'http://47.92.120.204:8888/share/upload', // 接口地址
+					url: 'http://127.0.0.1:8888/share/upload', // 接口地址
 					filePath: this.imagePaths[0],
 					file: this.imageFile[0], //选取图像序列中的第一张，后端是一张一张传
 					name: 'img', // name：必须为img

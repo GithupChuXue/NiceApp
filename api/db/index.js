@@ -3,7 +3,7 @@
 const mysql = require('mysql')
 
 const db = mysql.createPool({
-    host: '47.92.120.204',
+    host: '127.0.0.1',
     user: 'root',
     password: '@Qwe123456',
     database: 'niceapp'

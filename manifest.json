@@ -1,6 +1,6 @@
 {
     "name" : "niceApp",
-    "appid" : "__UNI__9F21473",
+    "appid" : "__UNI__195A10F",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -50,7 +50,7 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wx1066b0c510696738",
+        "appid" : "wx51af0a76f953f75a",
         "setting" : {
             "urlCheck" : false
         },
@@ -68,12 +68,5 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "2",
-    "h5" : {
-        "title" : "NiceAPP",
-        "router" : {
-            "mode" : "hash",
-            "base" : "./"
-        }
-    }
+    "vueVersion" : "2"
 }
